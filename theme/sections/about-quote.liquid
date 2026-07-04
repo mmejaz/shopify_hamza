@@ -1,0 +1,68 @@
+{%- comment -%}
+  Onterior — Quote band. Image on the left, dark quote panel on the right.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-quote">
+  <div class="ont-quote__grid">
+    <div class="ont-quote__media">
+      {%- if section.settings.image != blank -%}
+        {%- assign quote_alt = section.settings.image.alt | default: 'Onterior lifestyle' -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag:
+          loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', widths: '600, 900, 1200',
+          alt: quote_alt,
+          class: 'ont-quote__img' }}
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'ont-quote__img ont-placeholder' }}
+      {%- endif -%}
+      <span class="ont-quote__scrim" aria-hidden="true"></span>
+    </div>
+    <div class="ont-quote__panel">
+      <div class="ont-quote__inner ont-reveal">
+        <span class="ont-quote__mark" aria-hidden="true">{%- render 'onterior-icon', name: 'quote' -%}</span>
+        {%- if section.settings.quote != blank -%}
+          <blockquote class="ont-serif ont-quote__text">{{ section.settings.quote }}</blockquote>
+        {%- endif -%}
+        {%- if section.settings.attribution != blank -%}
+          <p class="ont-script ont-quote__by">{{ section.settings.attribution }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-quote { position: relative; overflow: hidden; }
+  .ont-quote__grid { display: grid; grid-template-columns: 1fr; min-height: 380px; }
+  @media (min-width: 1024px) { .ont-quote__grid { grid-template-columns: 1fr 1fr; } }
+  .ont-quote__media { position: relative; min-height: 260px; }
+  .ont-quote__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ont-quote__scrim { position: absolute; inset: 0; background: linear-gradient(to right, transparent, rgba(33,29,25,.4)); }
+  .ont-quote__panel { background: var(--ont-coal); color: var(--ont-cream); display: flex; align-items: center; }
+  .ont-quote__inner { padding: 56px 32px; max-width: 36rem; }
+  @media (min-width: 640px)  { .ont-quote__inner { padding: 56px; } }
+  @media (min-width: 1024px) { .ont-quote__inner { padding: 80px 64px; } }
+  .ont-quote__mark { display: inline-block; color: var(--ont-gold); margin-bottom: 24px; }
+  .ont-quote__mark svg { width: 40px; height: 40px; }
+  .ont-quote__text { font-size: 24px; line-height: 1.5; margin: 0; font-weight: 500; }
+  @media (min-width: 640px) { .ont-quote__text { font-size: 28px; } }
+  .ont-quote__by { margin-top: 28px; font-size: 30px; color: var(--ont-gold2); }
+  .ont-placeholder { background: var(--ont-linen); position: absolute; inset: 0; width: 100%; height: 100%; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Quote band",
+  "tag": "section",
+  "class": "section-onterior-quote",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "richtext", "id": "quote", "label": "Quote", "default": "<p>We don't just create products, we create experiences that become a part of your life.</p>" },
+    { "type": "text", "id": "attribution", "label": "Attribution", "default": "Onterior Enterprises" }
+  ],
+  "presets": [{ "name": "Quote band" }]
+}
+{% endschema %}

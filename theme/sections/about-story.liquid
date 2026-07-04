@@ -1,0 +1,125 @@
+{%- comment -%}
+  Onterior — Our Story
+  Image + narrative copy + a list of feature blocks (icon / title / text).
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-story" style="background: var(--ont-cream);">
+  <div class="ont-container">
+    <div class="ont-story__grid">
+
+      <div class="ont-story__media ont-reveal">
+        <div class="ont-zoom ont-story__frame">
+          {%- if section.settings.image != blank -%}
+            {%- assign story_alt = section.settings.image.alt | default: 'Onterior craftsmanship' -%}
+            {{ section.settings.image | image_url: width: 900 | image_tag:
+              loading: 'lazy',
+              sizes: '(min-width: 1024px) 380px, 100vw',
+              widths: '380, 600, 760, 900',
+              alt: story_alt,
+              class: 'ont-story__img' }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'ont-story__img ont-placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="ont-story__copy ont-reveal ont-d1">
+        {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        {%- if section.settings.heading != blank -%}<h2 class="ont-serif ont-story__title">{{ section.settings.heading }}</h2>{%- endif -%}
+        {%- if section.settings.body != blank -%}<div class="ont-story__body rte">{{ section.settings.body }}</div>{%- endif -%}
+      </div>
+
+      <div class="ont-story__features ont-reveal ont-d2">
+        {%- for block in section.blocks -%}
+          <div class="ont-feature" {{ block.shopify_attributes }}>
+            <span class="ont-feature__icon" aria-hidden="true">
+              {%- render 'onterior-icon', name: block.settings.icon -%}
+            </span>
+            <div>
+              {%- if block.settings.heading != blank -%}<h3 class="ont-feature__title">{{ block.settings.heading }}</h3>{%- endif -%}
+              {%- if block.settings.text != blank -%}<p class="ont-feature__text">{{ block.settings.text }}</p>{%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-story { padding-bottom: 64px; }
+  @media (min-width: 1024px) { .onterior-story { padding-bottom: 96px; } }
+  .ont-story__grid { display: grid; gap: 48px; align-items: start; }
+  @media (min-width: 1024px) {
+    .ont-story__grid { grid-template-columns: 4fr 5fr 3fr; gap: 40px; }
+  }
+  .ont-story__frame { border: 10px solid #fff; box-shadow: 0 20px 40px -20px rgba(22,19,17,.18); }
+  .ont-story__img { width: 100%; height: 300px; object-fit: cover; }
+  @media (min-width: 1024px) { .ont-story__img { height: 400px; } }
+  .ont-story__title { font-size: 30px; line-height: 1.3; margin: 0; font-weight: 600; }
+  @media (min-width: 640px) { .ont-story__title { font-size: 36px; } }
+  .ont-story__title em { color: var(--ont-gold); font-style: italic; font-weight: 500; }
+  .ont-story__body { margin-top: 24px; font-size: 14.5px; line-height: 1.95; color: var(--ont-stone); }
+  .ont-story__body p { margin: 0 0 1.1em; }
+  .ont-story__features { display: flex; flex-direction: column; gap: 32px; }
+  .ont-feature { display: flex; gap: 16px; }
+  .ont-feature__icon {
+    flex: 0 0 auto; display: grid; place-items: center; width: 44px; height: 44px;
+    border-radius: 999px; border: 1px solid rgba(185,138,68,.6); color: var(--ont-gold);
+    transition: background-color .3s ease, color .3s ease;
+  }
+  .ont-feature:hover .ont-feature__icon { background: var(--ont-gold); color: #fff; }
+  .ont-feature__icon svg { width: 20px; height: 20px; }
+  .ont-feature__title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin: 0; }
+  .ont-feature__text { margin: 4px 0 0; font-size: 13px; line-height: 1.6; color: var(--ont-stone); }
+  .ont-placeholder { background: var(--ont-linen); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Our Story",
+  "tag": "section",
+  "class": "section-onterior-story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Where Craftsmanship Meets <em>Timeless Living.</em>" },
+    { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Image" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "medal",
+          "options": [
+            { "value": "medal", "label": "Medal" },
+            { "value": "gem", "label": "Gem" },
+            { "value": "box", "label": "Box" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "leaf", "label": "Leaf" }
+          ]
+        },
+        { "type": "text", "id": "heading", "label": "Title", "default": "Timeless Design" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Elegant pieces that never go out of style." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{
+    "name": "Our Story",
+    "blocks": [
+      { "type": "feature", "settings": { "icon": "medal", "heading": "Timeless Design", "text": "Elegant pieces that never go out of style." } },
+      { "type": "feature", "settings": { "icon": "gem", "heading": "Premium Quality", "text": "Carefully selected materials for lasting beauty." } },
+      { "type": "feature", "settings": { "icon": "box", "heading": "Functional Luxury", "text": "Designed to be as practical as they are beautiful." } },
+      { "type": "feature", "settings": { "icon": "heart", "heading": "Customer Focus", "text": "Your satisfaction inspires everything we do." } }
+    ]
+  }]
+}
+{% endschema %}

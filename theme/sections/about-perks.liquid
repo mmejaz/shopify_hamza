@@ -1,0 +1,74 @@
+{%- comment -%}
+  Onterior — Perks bar (dark). Row of icon + title + text blocks.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-perks" style="background: var(--ont-ink); color: var(--ont-cream);">
+  <div class="ont-container">
+    <div class="ont-perks__grid">
+      {%- for block in section.blocks -%}
+        <div class="ont-perk" {{ block.shopify_attributes }}>
+          <span class="ont-perk__icon" aria-hidden="true">{%- render 'onterior-icon', name: block.settings.icon -%}</span>
+          <div>
+            {%- if block.settings.title != blank -%}<h3 class="ont-perk__title">{{ block.settings.title }}</h3>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p class="ont-perk__text">{{ block.settings.text }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .onterior-perks { padding-top: 40px; padding-bottom: 40px; border-top: 1px solid rgba(255,255,255,.05); }
+  .ont-perks__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  @media (min-width: 1024px) { .ont-perks__grid { grid-template-columns: repeat(4, 1fr); } }
+  .ont-perk { display: flex; align-items: center; gap: 16px; }
+  .ont-perk__icon {
+    flex: 0 0 auto; display: grid; place-items: center; width: 48px; height: 48px;
+    border-radius: 999px; border: 1px solid rgba(185,138,68,.4); color: var(--ont-gold);
+  }
+  .ont-perk__icon svg { width: 20px; height: 20px; }
+  .ont-perk__title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin: 0; }
+  .ont-perk__text { margin-top: 4px; font-size: 12px; line-height: 1.5; color: rgba(247,243,236,.5); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Perks bar",
+  "tag": "section",
+  "class": "section-onterior-perks",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "perk",
+      "name": "Perk",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "shield",
+          "options": [
+            { "value": "shield", "label": "Shield" },
+            { "value": "gem", "label": "Gem" },
+            { "value": "package", "label": "Package" },
+            { "value": "headset", "label": "Headset" },
+            { "value": "truck", "label": "Truck" },
+            { "value": "lock", "label": "Lock" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Secure Payment" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Safe and encrypted checkout." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{
+    "name": "Perks bar",
+    "blocks": [
+      { "type": "perk", "settings": { "icon": "shield", "title": "Secure Payment", "text": "Safe and encrypted checkout." } },
+      { "type": "perk", "settings": { "icon": "package", "title": "Premium Packaging", "text": "Beautifully packaged for a perfect unboxing." } },
+      { "type": "perk", "settings": { "icon": "headset", "title": "Dedicated Support", "text": "We're here to assist you every step of the way." } },
+      { "type": "perk", "settings": { "icon": "truck", "title": "Worldwide Shipping", "text": "Secure and reliable delivery worldwide." } }
+    ]
+  }]
+}
+{% endschema %}

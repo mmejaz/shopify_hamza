@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Onterior Enterprises — shared brand tokens, utilities & animations
+   Loaded by custom Onterior sections (Home + About).
+   Colors and type mirror the approved design system.
+   ========================================================================== */
+
+:root {
+  --ont-cream:  #F7F3EC;
+  --ont-cream2: #EFE9DE;
+  --ont-linen:  #E4DCCE;
+  --ont-ink:    #161311;
+  --ont-coal:   #211D19;
+  --ont-coal2:  #2A2520;
+  --ont-black:  #0F0D0B;
+  --ont-gold:   #B98A44;
+  --ont-gold2:  #C9A05E;
+  --ont-stone:  #6E675C;
+
+  --ont-serif:  "Playfair Display", Georgia, "Times New Roman", serif;
+  --ont-sans:   "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ont-script: "Great Vibes", cursive;
+
+  --ont-container: 1180px;
+}
+
+/* ---- Layout ---------------------------------------------------------------- */
+.ont { font-family: var(--ont-sans); color: var(--ont-ink); }
+.ont *,
+.ont *::before,
+.ont *::after { box-sizing: border-box; }
+
+.ont-container {
+  max-width: var(--ont-container);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 640px)  { .ont-container { padding-inline: 32px; } }
+@media (min-width: 1200px) { .ont-container { padding-inline: 0; } }
+
+/* ---- Typography ------------------------------------------------------------ */
+.ont-eyebrow {
+  font-family: var(--ont-sans);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--ont-gold);
+  margin: 0 0 20px;
+}
+@media (min-width: 640px) { .ont-eyebrow { font-size: 12px; } }
+
+.ont-serif { font-family: var(--ont-serif); }
+.ont-script { font-family: var(--ont-script); }
+.ont-gold-text { color: var(--ont-gold); }
+.ont em.ont-accent { color: var(--ont-gold); font-style: italic; font-weight: 500; }
+
+/* ---- Buttons --------------------------------------------------------------- */
+.ont-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--ont-sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  padding: 16px 32px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+.ont-btn svg { width: 16px; height: 16px; transition: transform .3s ease; }
+.ont-btn:hover svg { transform: translateX(6px); }
+
+.ont-btn--dark { background: var(--ont-ink); color: var(--ont-cream); }
+.ont-btn--dark:hover { background: var(--ont-gold); color: #fff; }
+
+.ont-btn--outline { border-color: rgba(247,243,236,.55); color: var(--ont-cream); }
+.ont-btn--outline:hover { background: var(--ont-cream); color: var(--ont-ink); }
+
+.ont-btn--solid-light { background: var(--ont-cream); color: var(--ont-ink); }
+.ont-btn--solid-light:hover { background: var(--ont-gold); color: #fff; }
+
+/* ---- Image zoom on hover --------------------------------------------------- */
+.ont-zoom { overflow: hidden; }
+.ont-zoom img { transition: transform .7s ease; display: block; width: 100%; height: 100%; object-fit: cover; }
+.ont-zoom:hover img { transform: scale(1.06); }
+
+/* ---- Scroll reveal --------------------------------------------------------- */
+.ont-reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+.ont-reveal.ont-in { opacity: 1; transform: translateY(0); }
+.ont-reveal.ont-d1 { transition-delay: .12s; }
+.ont-reveal.ont-d2 { transition-delay: .24s; }
+.ont-reveal.ont-d3 { transition-delay: .36s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ont-reveal { opacity: 1; transform: none; transition: none; }
+  .ont-zoom img { transition: none; }
+}
+
+::selection { background: var(--ont-gold); color: #fff; }

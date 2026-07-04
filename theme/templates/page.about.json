@@ -1,0 +1,74 @@
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "settings": {
+        "eyebrow": "About Onterior Enterprises",
+        "heading": "Crafted With Purpose. Designed <em>For Life.</em>",
+        "body": "<p>At Onterior Enterprises, we create luxury leather trays and home accents that blend timeless elegance, functionality, and uncompromising quality. Every piece we make is a reflection of our passion for craftsmanship and our commitment to elevating the spaces you love.</p>",
+        "button_label": "Explore Our Collections",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "story": {
+      "type": "about-story",
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "medal", "heading": "Timeless Design", "text": "Elegant pieces that never go out of style." } },
+        "f2": { "type": "feature", "settings": { "icon": "gem", "heading": "Premium Quality", "text": "Carefully selected materials for lasting beauty." } },
+        "f3": { "type": "feature", "settings": { "icon": "box", "heading": "Functional Luxury", "text": "Designed to be as practical as they are beautiful." } },
+        "f4": { "type": "feature", "settings": { "icon": "heart", "heading": "Customer Focus", "text": "Your satisfaction inspires everything we do." } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"],
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "Where Craftsmanship Meets <em>Timeless Living.</em>",
+        "body": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>"
+      }
+    },
+    "stats": {
+      "type": "about-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "icon": "medal", "value": 10, "suffix": "+", "label": "Years of Craftsmanship" } },
+        "s2": { "type": "stat", "settings": { "icon": "gem", "value": 500, "suffix": "+", "label": "Unique Products" } },
+        "s3": { "type": "stat", "settings": { "icon": "smile", "value": 1000, "suffix": "+", "label": "Happy Customers" } },
+        "s4": { "type": "stat", "settings": { "icon": "globe", "value_text": "WORLDWIDE", "label": "Shipping to 20+ Countries" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {}
+    },
+    "process": {
+      "type": "about-process",
+      "blocks": {
+        "p1": { "type": "step", "settings": { "number": "01", "title": "Finest Materials", "text": "We source the best leather and metals from trusted suppliers." } },
+        "p2": { "type": "step", "settings": { "number": "02", "title": "Skilled Craftsmanship", "text": "Our artisans handcraft every detail with precision and care." } },
+        "p3": { "type": "step", "settings": { "number": "03", "title": "Quality Check", "text": "Every piece is inspected to ensure perfection." } },
+        "p4": { "type": "step", "settings": { "number": "04", "title": "Perfectly Packed", "text": "Carefully packaged to reach you in perfect condition." } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"],
+      "settings": {
+        "eyebrow": "Crafted to Perfection",
+        "heading": "Thoughtful Process. Exceptional Results.",
+        "body": "<p>Every Onterior piece goes through a meticulous process to ensure it meets our highest standards of quality and design.</p>"
+      }
+    },
+    "quote": {
+      "type": "about-quote",
+      "settings": {
+        "quote": "<p>We don't just create products, we create experiences that become a part of your life.</p>",
+        "attribution": "Onterior Enterprises"
+      }
+    },
+    "perks": {
+      "type": "about-perks",
+      "blocks": {
+        "k1": { "type": "perk", "settings": { "icon": "shield", "title": "Secure Payment", "text": "Safe and encrypted checkout." } },
+        "k2": { "type": "perk", "settings": { "icon": "package", "title": "Premium Packaging", "text": "Beautifully packaged for a perfect unboxing." } },
+        "k3": { "type": "perk", "settings": { "icon": "headset", "title": "Dedicated Support", "text": "We're here to assist you every step of the way." } },
+        "k4": { "type": "perk", "settings": { "icon": "truck", "title": "Worldwide Shipping", "text": "Secure and reliable delivery worldwide." } }
+      },
+      "block_order": ["k1", "k2", "k3", "k4"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "story", "stats", "process", "quote", "perks"]
+}

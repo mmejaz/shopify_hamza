@@ -1,0 +1,28 @@
+services:
+  theme:
+    build: .
+    image: onterior-shopify-cli
+    env_file: .env
+    working_dir: /theme
+    volumes:
+      # Live-edit the theme from your host; the container sees changes instantly.
+      - ./theme:/theme
+      # Persist Shopify CLI login + cache so you only authenticate once.
+      - cli-config:/root/.config
+      - cli-cache:/root/.cache
+    ports:
+      - "9292:9292"   # local preview  -> http://localhost:9292
+      - "9293:9293"   # hot-reload websocket
+    # Keep STDIN/TTY so the first-run device-code login prompt works.
+    stdin_open: true
+    tty: true
+    # Only pass --store-password when it's set (needed while the store is
+    # password-protected; omit once the store is public).
+    command:
+      - sh
+      - -c
+      - 'shopify theme dev --store "$SHOPIFY_STORE" --host 0.0.0.0 ${SHOPIFY_STORE_PASSWORD:+--store-password "$SHOPIFY_STORE_PASSWORD"}'
+
+volumes:
+  cli-config:
+  cli-cache:

@@ -1,0 +1,82 @@
+{%- comment -%}
+  Onterior — About hero
+  Two-column: intro copy + button on the left, feature image on the right.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-about-hero" style="background: var(--ont-cream);">
+  <div class="ont-container">
+    <div class="ont-abh__grid">
+      <div class="ont-abh__copy ont-reveal">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ont-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h1 class="ont-serif ont-abh__title">{{ section.settings.heading }}</h1>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="ont-abh__body rte">{{ section.settings.body }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <a class="ont-btn ont-btn--dark ont-abh__cta" {% if section.settings.button_link != blank %}href="{{ section.settings.button_link }}"{% else %}href="#"{% endif %}>
+            {{ section.settings.button_label }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="ont-abh__media ont-reveal ont-d1">
+        <div class="ont-zoom ont-abh__frame">
+          {%- if section.settings.image != blank -%}
+            {%- assign abh_alt = section.settings.image.alt | default: 'Onterior luxury leather tray and home accents' -%}
+            {{ section.settings.image | image_url: width: 1200 | image_tag:
+              loading: 'lazy',
+              sizes: '(min-width: 1024px) 560px, 100vw',
+              widths: '480, 720, 960, 1200',
+              alt: abh_alt,
+              class: 'ont-abh__img' }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'ont-abh__img ont-placeholder' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .onterior-about-hero { padding-top: 56px; padding-bottom: 64px; }
+  @media (min-width: 1024px) { .onterior-about-hero { padding-top: 80px; padding-bottom: 96px; } }
+  .ont-abh__grid { display: grid; gap: 48px; align-items: center; }
+  @media (min-width: 1024px) { .ont-abh__grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .ont-abh__title { font-size: 38px; line-height: 1.12; margin: 0; color: var(--ont-ink); font-weight: 600; }
+  @media (min-width: 640px) { .ont-abh__title { font-size: 48px; } }
+  @media (min-width: 1280px) { .ont-abh__title { font-size: 56px; } }
+  .ont-abh__title em { color: var(--ont-gold); font-style: italic; font-weight: 500; }
+  .ont-abh__body { margin-top: 28px; max-width: 28rem; font-size: 15px; line-height: 1.9; color: var(--ont-stone); }
+  .ont-abh__body p { margin: 0 0 1em; }
+  .ont-abh__cta { margin-top: 36px; }
+  .ont-abh__frame { box-shadow: 0 25px 50px -12px rgba(22,19,17,.25); }
+  .ont-abh__img { width: 100%; height: 320px; object-fit: cover; }
+  @media (min-width: 640px)  { .ont-abh__img { height: 420px; } }
+  @media (min-width: 1024px) { .ont-abh__img { height: 470px; } }
+  .ont-placeholder { background: var(--ont-linen); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About hero",
+  "tag": "section",
+  "class": "section-onterior-about-hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Onterior Enterprises" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "info": "Use italic (em) for the gold accent.", "default": "Crafted With Purpose. Designed <em>For Life.</em>" },
+    { "type": "richtext", "id": "body", "label": "Body text", "default": "<p>At Onterior Enterprises, we create luxury leather trays and home accents that blend timeless elegance, functionality, and uncompromising quality. Every piece we make is a reflection of our passion for craftsmanship and our commitment to elevating the spaces you love.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore Our Collections" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "image_picker", "id": "image", "label": "Image" }
+  ],
+  "presets": [{ "name": "About hero" }]
+}
+{% endschema %}

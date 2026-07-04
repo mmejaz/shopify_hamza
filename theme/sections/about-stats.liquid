@@ -1,0 +1,89 @@
+{%- comment -%}
+  Onterior — Stats band (dark). Animated counters via onterior.js.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-stats" style="background: var(--ont-coal); color: var(--ont-cream);">
+  <div class="ont-container">
+    <div class="ont-stats__grid">
+      {%- for block in section.blocks -%}
+        {%- assign delay = forloop.index0 | modulo: 4 -%}
+        <div class="ont-stat ont-reveal ont-d{{ delay }}" {{ block.shopify_attributes }}>
+          <span class="ont-stat__icon" aria-hidden="true">{%- render 'onterior-icon', name: block.settings.icon -%}</span>
+          <div class="ont-stat__body">
+            {%- if block.settings.value_text != blank -%}
+              <p class="ont-serif ont-stat__num ont-stat__num--text">{{ block.settings.value_text }}</p>
+            {%- else -%}
+              <p class="ont-serif ont-stat__num"><span class="ont-counter" data-target="{{ block.settings.value }}">0</span>{{ block.settings.suffix }}</p>
+            {%- endif -%}
+            {%- if block.settings.label != blank -%}<p class="ont-stat__label">{{ block.settings.label }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-stats { padding-top: 48px; padding-bottom: 48px; }
+  @media (min-width: 1024px) { .onterior-stats { padding-top: 56px; padding-bottom: 56px; } }
+  .ont-stats__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+  @media (min-width: 1024px) { .ont-stats__grid { grid-template-columns: repeat(4, 1fr); } }
+  .ont-stat { display: flex; align-items: center; gap: 16px; justify-content: center; }
+  @media (min-width: 1024px) { .ont-stat { justify-content: flex-start; } }
+  .ont-stat__icon {
+    flex: 0 0 auto; display: grid; place-items: center; width: 56px; height: 56px;
+    border-radius: 999px; border: 1px solid rgba(185,138,68,.5); color: var(--ont-gold);
+  }
+  .ont-stat__icon svg { width: 24px; height: 24px; }
+  .ont-stat__num { font-size: 30px; line-height: 1; margin: 0; }
+  @media (min-width: 1024px) { .ont-stat__num { font-size: 34px; } }
+  .ont-stat__num--text { font-size: 18px; letter-spacing: .04em; }
+  @media (min-width: 640px)  { .ont-stat__num--text { font-size: 24px; } }
+  @media (min-width: 1024px) { .ont-stat__num--text { font-size: 26px; } }
+  .ont-stat__label { margin-top: 6px; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(247,243,236,.6); line-height: 1.4; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Stats band",
+  "tag": "section",
+  "class": "section-onterior-stats",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "medal",
+          "options": [
+            { "value": "medal", "label": "Medal" },
+            { "value": "gem", "label": "Gem" },
+            { "value": "smile", "label": "Smile" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "box", "label": "Box" },
+            { "value": "heart", "label": "Heart" }
+          ]
+        },
+        { "type": "number", "id": "value", "label": "Number (counts up)", "default": 100 },
+        { "type": "text", "id": "suffix", "label": "Suffix", "default": "+" },
+        { "type": "text", "id": "value_text", "label": "Text value (overrides number)", "info": "Use for non-numeric stats like WORLDWIDE." },
+        { "type": "text", "id": "label", "label": "Label", "default": "Label text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{
+    "name": "Stats band",
+    "blocks": [
+      { "type": "stat", "settings": { "icon": "medal", "value": 10, "suffix": "+", "label": "Years of Craftsmanship" } },
+      { "type": "stat", "settings": { "icon": "gem", "value": 500, "suffix": "+", "label": "Unique Products" } },
+      { "type": "stat", "settings": { "icon": "smile", "value": 1000, "suffix": "+", "label": "Happy Customers" } },
+      { "type": "stat", "settings": { "icon": "globe", "value_text": "WORLDWIDE", "label": "Shipping to 20+ Countries" } }
+    ]
+  }]
+}
+{% endschema %}

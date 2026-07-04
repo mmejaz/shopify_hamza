@@ -1,0 +1,39 @@
+{%- comment -%}
+  Onterior icon set. Usage: {% render 'onterior-icon', name: 'medal' %}
+  All icons are 24x24 stroke SVGs that inherit currentColor.
+{%- endcomment -%}
+{%- liquid
+  assign n = name | default: 'medal'
+-%}
+{%- case n -%}
+  {%- when 'medal' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="9" r="5"/><path stroke-linecap="round" d="M8.5 13.5L7 21l5-2.5L17 21l-1.5-7.5"/></svg>
+  {%- when 'gem' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M6 3h12l3 6-9 12L3 9l3-6z"/><path stroke-linejoin="round" d="M3 9h18M9 3l3 6 3-6M12 21L9 9m6 0l-3 12"/></svg>
+  {%- when 'box' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+  {%- when 'heart' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M12 21s-7.5-4.8-9.5-9A5.4 5.4 0 0112 6.4 5.4 5.4 0 0121.5 12c-2 4.2-9.5 9-9.5 9z"/></svg>
+  {%- when 'shield' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M12 3l8 3v6c0 4.4-3.2 7.8-8 9-4.8-1.2-8-4.6-8-9V6l8-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+  {%- when 'leaf' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M5 21c0-9 5-14 15-15-1 10-6 15-15 15z"/><path stroke-linecap="round" d="M5 21c3-6 6-9 10-11"/></svg>
+  {%- when 'smile' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M8 13s1.5 2.5 4 2.5S16 13 16 13"/><path stroke-linecap="round" d="M9 9.5h.01M15 9.5h.01"/></svg>
+  {%- when 'globe' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+  {%- when 'lock' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="10" width="15" height="10" rx="2"/><path stroke-linecap="round" d="M8 10V7a4 4 0 018 0v3"/></svg>
+  {%- when 'package' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+  {%- when 'headset' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M4 13v-2a8 8 0 0116 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path stroke-linecap="round" d="M19.5 19a4 4 0 01-4 3h-2"/></svg>
+  {%- when 'truck' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M1.5 6h12v11h-12zM13.5 9h4l3 3.5V17h-7z"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17" cy="18.5" r="1.8"/></svg>
+  {%- when 'arrow' -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"/></svg>
+  {%- when 'quote' -%}
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 5C4 6.8 2.5 9.4 2.5 12.6c0 3.8 2.3 6.4 5.3 6.4 2.4 0 4.2-1.8 4.2-4.1 0-2.2-1.6-3.9-3.8-3.9-.4 0-.9.1-1 .1.3-1.9 2-4 3.9-5L6.5 5zm10.5 0c-2.5 1.8-4 4.4-4 7.6 0 3.8 2.3 6.4 5.3 6.4 2.3 0 4.2-1.8 4.2-4.1 0-2.2-1.7-3.9-3.9-3.9-.4 0-.8.1-1 .1.4-1.9 2.1-4 4-5L17 5z"/></svg>
+  {%- else -%}
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>
+{%- endcase -%}
