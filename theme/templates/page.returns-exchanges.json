@@ -15,7 +15,10 @@
       "settings": {
         "eyebrow": "Returns & Exchanges",
         "heading": "Returns Policy",
-        "intro": "<p>Your satisfaction is important to us.</p><p>If you're not completely happy with your purchase, you may request a return or exchange within the eligible return period.</p>"
+        "intro": "<p>Your satisfaction is important to us.</p><p>If you're not completely happy with your purchase, you may request a return or exchange within the eligible return period.</p>",
+        "layout_style": "returns",
+        "cta_label": "Start a Return Request",
+        "cta_link": "/pages/contact"
       }
     }
   },

@@ -15,7 +15,10 @@
       "settings": {
         "eyebrow": "Care Instructions",
         "heading": "Product Care",
-        "intro": "<p>Proper care helps preserve the quality and appearance of your purchase.</p>"
+        "intro": "<p>Proper care helps preserve the quality and appearance of your purchase.</p>",
+        "layout_style": "care",
+        "cta_label": "Ask About Product Care",
+        "cta_link": "/pages/contact"
       }
     }
   },

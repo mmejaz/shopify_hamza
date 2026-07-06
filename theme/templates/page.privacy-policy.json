@@ -22,7 +22,10 @@
       "settings": {
         "eyebrow": "Privacy Policy",
         "heading": "Your Privacy Matters",
-        "intro": "<p>We respect your privacy and are committed to protecting your personal information.</p>"
+        "intro": "<p>We respect your privacy and are committed to protecting your personal information.</p>",
+        "layout_style": "privacy",
+        "cta_label": "Contact Support",
+        "cta_link": "/pages/contact"
       }
     }
   },

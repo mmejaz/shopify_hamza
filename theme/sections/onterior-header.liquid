@@ -10,6 +10,10 @@
 {%- assign menu = section.settings.menu -%}
 {%- comment -%} Menu items to hide (comma-separated titles), normalised for matching {%- endcomment -%}
 {%- assign hide_wrapped = ',' | append: section.settings.hide_items | downcase | replace: ' ', '' | append: ',' -%}
+{%- assign mark_letters = section.settings.monogram | default: 'OE' -%}
+{%- assign mark_top = mark_letters | slice: 0, 1 -%}
+{%- assign mark_bottom = mark_letters | slice: 1, 1 -%}
+{%- if mark_bottom == blank -%}{%- assign mark_bottom = 'E' -%}{%- endif -%}
 
 <header
   class="ont onterior-header{% unless is_overlay %} is-solid{% endunless %}"
@@ -22,7 +26,10 @@
       {%- if section.settings.logo != blank -%}
         {{ section.settings.logo | image_url: width: 320 | image_tag: alt: shop.name, class: 'ont-hdr__logoimg', widths: '120, 200, 320', loading: 'eager' }}
       {%- else -%}
-        <span class="ont-hdr__mark">{{ section.settings.monogram | default: 'O' }}</span>
+        <span class="ont-hdr__mark" aria-hidden="true">
+          <span>{{ mark_top }}</span>
+          <span>{{ mark_bottom }}</span>
+        </span>
         <span class="ont-hdr__logotext">
           <span class="ont-hdr__logoname">{{ section.settings.brand_name | default: 'ONTERIOR' }}</span>
           <span class="ont-hdr__logosub">{{ section.settings.brand_sub | default: 'ENTERPRISES' }}</span>
@@ -122,7 +129,8 @@
   /* Logo */
   .ont-hdr__logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
   .ont-hdr__logoimg { max-height: 44px; width: auto; }
-  .ont-hdr__mark { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(201,160,94,.7); color: var(--ont-cream); font-family: var(--ont-serif); font-size: 18px; line-height: 1; }
+  .ont-hdr__mark { display: inline-grid; place-items: center; grid-template-rows: 1fr 1fr; width: 36px; height: 46px; border: 1px solid rgba(201,160,94,.78); border-radius: 4px; color: var(--ont-cream); font-family: var(--ont-serif); font-size: 16px; line-height: 1; letter-spacing: 0; box-shadow: inset 0 0 0 1px rgba(201,160,94,.18); }
+  .ont-hdr__mark span { display: block; transform: translateY(1px); }
   .ont-hdr__logoname { display: block; font-family: var(--ont-serif); color: var(--ont-cream); font-size: 17px; letter-spacing: .14em; line-height: 1.1; }
   .ont-hdr__logosub { display: block; color: var(--ont-sand); font-size: 9px; letter-spacing: .34em; font-weight: 500; }
 
@@ -176,7 +184,7 @@
   "name": "Onterior header",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo image (optional)" },
-    { "type": "text", "id": "monogram", "label": "Monogram", "default": "O" },
+    { "type": "text", "id": "monogram", "label": "Monogram", "default": "OE" },
     { "type": "text", "id": "brand_name", "label": "Brand name", "default": "ONTERIOR" },
     { "type": "text", "id": "brand_sub", "label": "Brand subtitle", "default": "ENTERPRISES" },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },

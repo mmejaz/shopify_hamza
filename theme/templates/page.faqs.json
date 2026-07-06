@@ -9,13 +9,65 @@
             "heading": "Common Topics",
             "body": "<ul><li>How do I place an order?</li><li>Can I modify or cancel my order?</li><li>How long does shipping take?</li><li>Do you ship internationally?</li><li>How can I track my order?</li><li>What is your return policy?</li><li>How do I contact customer support?</li></ul>"
           }
+        },
+        "place-order": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I place an order?",
+            "answer": "<p>Select the product you love, add it to your cart, and complete checkout with your billing and shipping details. Once your order is placed, you will receive an order confirmation email.</p>"
+          }
+        },
+        "modify-order": {
+          "type": "faq",
+          "settings": {
+            "question": "Can I modify or cancel my order?",
+            "answer": "<p>Please contact us as soon as possible after placing your order. If your order has not entered processing or dispatch, our support team will do its best to help with changes or cancellation.</p>"
+          }
+        },
+        "shipping-time": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders are processed within 5-8 business days. Delivery time after dispatch depends on your location and the shipping method selected at checkout.</p>"
+          }
+        },
+        "international": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>International shipping is available for selected destinations. Shipping charges, delivery times, customs duties, taxes, and import fees may vary by country.</p>"
+          }
+        },
+        "tracking": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your order has shipped, you will receive a confirmation email with tracking information so you can follow your delivery.</p>"
+          }
+        },
+        "returns": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>Eligible unused items in original condition may be returned or exchanged within the return period. Original packaging and proof of purchase are required.</p>"
+          }
+        },
+        "support": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I contact customer support?",
+            "answer": "<p>You can reach our customer support team through the contact page, by email, or through WhatsApp. We are happy to help with products, orders, shipping, returns, and care instructions.</p>"
+          }
         }
       },
-      "block_order": ["common-topics"],
+      "block_order": ["common-topics", "place-order", "modify-order", "shipping-time", "international", "tracking", "returns", "support"],
       "settings": {
         "eyebrow": "FAQs",
         "heading": "Frequently Asked Questions",
-        "intro": "<p>Find answers to the questions we receive most often about our products, orders, shipping, returns, and care instructions. If you can't find what you're looking for, our customer support team is always happy to help.</p>"
+        "intro": "<p>Find answers to the questions we receive most often about our products, orders, shipping, returns, and care instructions. If you can't find what you're looking for, our customer support team is always happy to help.</p>",
+        "layout_style": "faq",
+        "cta_label": "Contact Support",
+        "cta_link": "/pages/contact"
       }
     }
   },

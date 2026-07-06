@@ -15,7 +15,10 @@
       "settings": {
         "eyebrow": "Terms & Conditions",
         "heading": "Terms of Use",
-        "intro": "<p>By accessing or purchasing from our website, you agree to these Terms and Conditions.</p>"
+        "intro": "<p>By accessing or purchasing from our website, you agree to these Terms and Conditions.</p>",
+        "layout_style": "terms",
+        "cta_label": "Contact Support",
+        "cta_link": "/pages/contact"
       }
     }
   },
