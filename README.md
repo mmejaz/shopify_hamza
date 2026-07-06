@@ -70,3 +70,4 @@ Base **Trade** theme plus custom Onterior work:
   `snippets/onterior-icon.liquid`.
 - Brand fonts (Playfair Display / Jost / Great Vibes) wired into
   `layout/theme.liquid`.
+# shopify_hamza
