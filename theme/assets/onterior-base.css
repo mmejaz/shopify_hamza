@@ -15,13 +15,19 @@
   --ont-gold:   #B98A44;
   --ont-gold2:  #C9A05E;
   --ont-stone:  #6E675C;
+  --ont-sand:   #C9A05E; /* light gold accent */
+  --ont-bronze: #B98A44; /* mid gold/bronze accent */
+  --ont-mist:   #ECE7DF; /* soft greige band */
+  --ont-faded:  #A79E90; /* muted text on dark */
 
   --ont-serif:  "Playfair Display", Georgia, "Times New Roman", serif;
   --ont-sans:   "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ont-script: "Great Vibes", cursive;
 
   --ont-container: 1180px;
+  --ont-header-h: 68px;
 }
+@media (min-width: 1024px) { :root { --ont-header-h: 88px; } }
 
 /* ---- Layout ---------------------------------------------------------------- */
 .ont { font-family: var(--ont-sans); color: var(--ont-ink); }

@@ -1,0 +1,68 @@
+{%- comment -%}
+  Onterior — Home feature strip (mist band). Row of icon + title + text blocks.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-features" style="background: var(--ont-mist);">
+  <div class="ont-container ont-feat__grid ont-reveal">
+    {%- for block in section.blocks -%}
+      <div class="ont-feat" {{ block.shopify_attributes }}>
+        <span class="ont-feat__icon" aria-hidden="true">{%- render 'onterior-icon', name: block.settings.icon -%}</span>
+        <div>
+          {%- if block.settings.title != blank -%}<p class="ont-feat__title">{{ block.settings.title }}</p>{%- endif -%}
+          {%- if block.settings.text != blank -%}<p class="ont-feat__text">{{ block.settings.text }}</p>{%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .ont-feat__grid { display: grid; grid-template-columns: 1fr; gap: 32px; padding-top: 48px; padding-bottom: 48px; }
+  @media (min-width: 640px)  { .ont-feat__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .ont-feat__grid { grid-template-columns: repeat(4, 1fr); gap: 40px; } }
+  .ont-feat { display: flex; align-items: flex-start; gap: 16px; }
+  .ont-feat__icon { flex: 0 0 auto; color: var(--ont-ink); margin-top: 2px; }
+  .ont-feat__icon svg { width: 28px; height: 28px; }
+  .ont-feat__title { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: var(--ont-ink); margin: 0 0 6px; }
+  .ont-feat__text { font-size: 12.5px; line-height: 1.6; font-weight: 300; color: var(--ont-stone); margin: 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home features",
+  "tag": "section",
+  "class": "section-onterior-features",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "heart",
+          "options": [
+            { "value": "heart", "label": "Heart" }, { "value": "doc", "label": "Document" },
+            { "value": "truck", "label": "Truck" }, { "value": "user-check", "label": "User check" },
+            { "value": "shield", "label": "Shield" }, { "value": "gift", "label": "Gift" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Premium Quality" },
+        { "type": "text", "id": "text", "label": "Text", "default": "Finest materials and craftsmanship" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{
+    "name": "Home features",
+    "blocks": [
+      { "type": "feature", "settings": { "icon": "heart", "title": "Premium Quality", "text": "Finest materials and craftsmanship" } },
+      { "type": "feature", "settings": { "icon": "doc", "title": "Custom Made", "text": "Tailored to your style and needs" } },
+      { "type": "feature", "settings": { "icon": "truck", "title": "Worldwide Delivery", "text": "Secure packaging, global reach" } },
+      { "type": "feature", "settings": { "icon": "user-check", "title": "Dedicated Service", "text": "Personalized support every step of the way" } }
+    ]
+  }]
+}
+{% endschema %}

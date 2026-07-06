@@ -1,0 +1,135 @@
+{%- comment -%}
+  Onterior — Home intro ("Where Luxury Meets Lifestyle").
+  Left: copy + link. Right: feature icons (blocks) + a 3-image row.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-intro" style="background: var(--ont-cream);">
+  <div class="ont-container ont-intro__grid">
+
+    <div class="ont-intro__copy ont-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow" style="color: var(--ont-bronze);">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="ont-serif ont-intro__title">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.body != blank -%}<div class="ont-intro__body rte">{{ section.settings.body }}</div>{%- endif -%}
+      {%- if section.settings.link_label != blank -%}
+        <a class="ont-intro__link" href="{{ section.settings.link_url | default: '#' }}">
+          {{ section.settings.link_label }}
+          <svg width="26" height="10" viewBox="0 0 30 10" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M0 5h27M23 1l4 4-4 4"/></svg>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="ont-intro__right">
+      {%- if section.blocks.size > 0 -%}
+        <div class="ont-intro__features ont-reveal">
+          {%- for block in section.blocks -%}
+            <div class="ont-intro__feature" {{ block.shopify_attributes }}>
+              <span class="ont-intro__ficon" aria-hidden="true">{%- render 'onterior-icon', name: block.settings.icon -%}</span>
+              {%- if block.settings.label != blank -%}<p class="ont-intro__flabel">{{ block.settings.label }}</p>{%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="ont-intro__images ont-reveal">
+        {%- for n in (1..3) -%}
+          {%- assign img_key = 'image_' | append: n -%}
+          {%- assign img = section.settings[img_key] -%}
+          {%- assign asset_key = 'image_asset_' | append: n -%}
+          {%- assign asset_name = section.settings[asset_key] -%}
+          {%- assign alt_key = 'alt_' | append: n -%}
+          {%- assign alt_text = section.settings[alt_key] | default: 'Onterior lifestyle interior' -%}
+          <div class="ont-zoom ont-intro__imgwrap">
+            {%- if img != blank -%}
+              {{ img | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 640px) 260px, 100vw', widths: '300, 450, 600', alt: alt_text, class: 'ont-intro__img' }}
+            {%- elsif asset_name != blank -%}
+              <img class="ont-intro__img" src="{{ asset_name | asset_url }}" alt="{{ alt_text | escape }}" loading="lazy" width="600" height="600">
+            {%- else -%}
+              {{ 'product-apparel-2' | placeholder_svg_tag: 'ont-intro__img ont-ph' }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-intro { padding-top: 64px; padding-bottom: 64px; }
+  @media (min-width: 1024px) { .onterior-intro { padding-top: 96px; padding-bottom: 80px; } }
+  .ont-intro__grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+  @media (min-width: 1024px) { .ont-intro__grid { grid-template-columns: 340px 1fr; column-gap: 80px; } }
+  .ont-intro__title { color: var(--ont-ink); font-weight: 500; font-size: 34px; line-height: 1.15; margin: 0; }
+  @media (min-width: 1024px) { .ont-intro__title { font-size: 42px; } }
+  .ont-intro__body { margin-top: 28px; max-width: 28rem; font-size: 14.5px; line-height: 1.9; font-weight: 300; color: var(--ont-stone); }
+  .ont-intro__body p { margin: 0 0 1em; }
+  .ont-intro__link { display: inline-flex; align-items: center; gap: 16px; margin-top: 32px; color: var(--ont-ink); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(185,138,68,.6); padding-bottom: 8px; }
+  .ont-intro__link svg { transition: transform .3s ease; }
+  .ont-intro__link:hover svg { transform: translateX(5px); }
+  .ont-intro__features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+  @media (min-width: 640px) { .ont-intro__features { gap: 32px; } }
+  .ont-intro__feature { text-align: center; }
+  .ont-intro__ficon { display: inline-grid; place-items: center; color: var(--ont-ink); margin-bottom: 16px; }
+  .ont-intro__ficon svg { width: 34px; height: 34px; }
+  .ont-intro__flabel { font-size: 12.5px; font-weight: 500; color: var(--ont-ink); line-height: 1.3; margin: 0; }
+  .ont-intro__images { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  @media (min-width: 640px) { .ont-intro__images { grid-template-columns: repeat(3, 1fr); } }
+  .ont-intro__imgwrap { height: 220px; }
+  @media (min-width: 640px) { .ont-intro__imgwrap { height: 210px; } }
+  .ont-intro__img { width: 100%; height: 100%; object-fit: cover; }
+  .ont-ph { background: var(--ont-linen); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home intro",
+  "tag": "section",
+  "class": "section-onterior-intro",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Crafted For You" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Where Luxury Meets Lifestyle" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>At Onterior Enterprises, we create bespoke leather goods and home accents that bring refinement, function, and timeless beauty into your space.</p>" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Our Story" },
+    { "type": "url", "id": "link_url", "label": "Link URL" },
+    { "type": "header", "content": "Image row" },
+    { "type": "image_picker", "id": "image_1", "label": "Image 1 (upload)" },
+    { "type": "text", "id": "image_asset_1", "label": "Image 1 asset filename" },
+    { "type": "text", "id": "alt_1", "label": "Image 1 alt text" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2 (upload)" },
+    { "type": "text", "id": "image_asset_2", "label": "Image 2 asset filename" },
+    { "type": "text", "id": "alt_2", "label": "Image 2 alt text" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3 (upload)" },
+    { "type": "text", "id": "image_asset_3", "label": "Image 3 asset filename" },
+    { "type": "text", "id": "alt_3", "label": "Image 3 alt text" }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "gem",
+          "options": [
+            { "value": "gem", "label": "Gem" }, { "value": "medal", "label": "Medal" },
+            { "value": "hand", "label": "Hand" }, { "value": "pencil", "label": "Pencil" },
+            { "value": "leaf", "label": "Leaf" }, { "value": "box", "label": "Box" }
+          ]
+        },
+        { "type": "text", "id": "label", "label": "Label", "default": "Premium Materials" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{
+    "name": "Home intro",
+    "blocks": [
+      { "type": "feature", "settings": { "icon": "gem", "label": "Premium Materials" } },
+      { "type": "feature", "settings": { "icon": "hand", "label": "Handcrafted Excellence" } },
+      { "type": "feature", "settings": { "icon": "pencil", "label": "Bespoke Customization" } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,145 @@
+{%- comment -%}
+  Onterior — Collection page. Brand header + elegant product grid + sort + pagination.
+  Uses live collection/product data. Cards link to the product page.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+{%- paginate collection.products by section.settings.per_page -%}
+<section class="ont onterior-collection" style="background: var(--ont-cream);">
+  <div class="ont-container">
+
+    <header class="ont-cl__head ont-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="ont-serif ont-cl__title">{{ collection.title | default: 'Collection' }}</h1>
+      {%- if collection.description != blank -%}<div class="ont-cl__desc rte">{{ collection.description }}</div>{%- endif -%}
+    </header>
+
+    <div class="ont-cl__toolbar ont-reveal">
+      <span class="ont-cl__count">{{ collection.products_count }} {% if collection.products_count == 1 %}product{% else %}products{% endif %}</span>
+      {%- if section.settings.show_sort and collection.sort_options.size > 0 -%}
+        {%- assign current_sort = collection.sort_by | default: collection.default_sort_by -%}
+        <form method="get" class="ont-cl__sort" id="ont-sort-{{ section.id }}">
+          {%- for filter in collection.filters -%}{%- for v in filter.active_values -%}<input type="hidden" name="{{ v.param_name }}" value="{{ v.value }}">{%- endfor -%}{%- endfor -%}
+          <label for="ont-sortsel">Sort by</label>
+          <select id="ont-sortsel" name="sort_by" onchange="this.form.submit()">
+            {%- for opt in collection.sort_options -%}
+              <option value="{{ opt.value }}"{% if opt.value == current_sort %} selected{% endif %}>{{ opt.name }}</option>
+            {%- endfor -%}
+          </select>
+        </form>
+      {%- endif -%}
+    </div>
+
+    {%- if collection.products.size > 0 -%}
+      <div class="ont-cl__grid">
+        {%- for product in collection.products -%}
+          {%- assign delay = forloop.index0 | modulo: 4 -%}
+          <a href="{{ product.url }}" class="ont-cl__card ont-reveal ont-d{{ delay }}">
+            <div class="ont-cl__imgwrap">
+              {%- if product.featured_media -%}
+                {{ product.featured_media | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 280px, 45vw', widths: '300, 500, 800', alt: product.title, class: 'ont-cl__img ont-cl__img--1' }}
+                {%- if product.media[1] != blank -%}
+                  {{ product.media[1] | image_url: width: 800 | image_tag: loading: 'lazy', sizes: '(min-width: 1024px) 280px, 45vw', widths: '300, 500, 800', alt: product.title, class: 'ont-cl__img ont-cl__img--2' }}
+                {%- endif -%}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'ont-cl__img ont-ph' }}
+              {%- endif -%}
+              {%- if product.available == false -%}
+                <span class="ont-cl__badge ont-cl__badge--out">Sold Out</span>
+              {%- elsif product.compare_at_price > product.price -%}
+                <span class="ont-cl__badge">Sale</span>
+              {%- endif -%}
+              <span class="ont-cl__view">View Product</span>
+            </div>
+            {%- if product.vendor != blank and section.settings.show_vendor -%}<p class="ont-cl__vendor">{{ product.vendor }}</p>{%- endif -%}
+            <h3 class="ont-cl__name">{{ product.title }}</h3>
+            <p class="ont-cl__price">
+              {%- if product.compare_at_price > product.price -%}
+                <span class="ont-cl__now">{{ product.price | money }}</span> <s class="ont-cl__was">{{ product.compare_at_price | money }}</s>
+              {%- else -%}
+                {{ product.price | money }}
+              {%- endif -%}
+            </p>
+          </a>
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <nav class="ont-cl__pagination" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
+      {%- endif -%}
+    {%- else -%}
+      <div class="ont-cl__empty">
+        <p>No products here yet — check back soon.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="ont-btn ont-btn--dark">Browse all products</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{%- endpaginate -%}
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-collection { padding-top: 56px; padding-bottom: 80px; }
+  @media (min-width: 1024px) { .onterior-collection { padding-top: 72px; padding-bottom: 104px; } }
+
+  .ont-cl__head { text-align: center; max-width: 640px; margin: 0 auto 28px; }
+  .ont-cl__head .ont-eyebrow { margin-bottom: 14px; }
+  .ont-cl__title { font-size: 34px; line-height: 1.1; margin: 0; color: var(--ont-ink); font-weight: 600; }
+  @media (min-width: 1024px) { .ont-cl__title { font-size: 46px; } }
+  .ont-cl__desc { margin-top: 18px; font-size: 14.5px; line-height: 1.9; font-weight: 300; color: var(--ont-stone); }
+
+  .ont-cl__toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; margin-bottom: 24px; border-top: 1px solid rgba(22,19,17,.1); border-bottom: 1px solid rgba(22,19,17,.1); }
+  .ont-cl__count { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ont-stone); }
+  .ont-cl__sort { display: flex; align-items: center; gap: 10px; }
+  .ont-cl__sort label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ont-stone); }
+  .ont-cl__sort select { font-family: var(--ont-sans); font-size: 13px; color: var(--ont-ink); background: transparent; border: 1px solid rgba(22,19,17,.16); padding: 8px 30px 8px 12px; cursor: pointer; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236E675C' stroke-width='1.2' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+  .ont-cl__sort select:focus { outline: none; border-color: var(--ont-gold); }
+
+  .ont-cl__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
+  @media (min-width: 768px)  { .ont-cl__grid { grid-template-columns: repeat(3, 1fr); gap: 32px 24px; } }
+  @media (min-width: 1200px) { .ont-cl__grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .ont-cl__card { text-decoration: none; display: block; }
+  .ont-cl__imgwrap { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--ont-linen); margin-bottom: 16px; }
+  .ont-cl__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease, opacity .5s ease; }
+  .ont-cl__img--2 { opacity: 0; }
+  .ont-cl__card:hover .ont-cl__img--1 { transform: scale(1.05); }
+  .ont-cl__card:hover .ont-cl__img--2 { opacity: 1; transform: scale(1.05); }
+  .ont-ph { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .ont-cl__badge { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--ont-gold); color: #fff; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 5px 10px; }
+  .ont-cl__badge--out { background: var(--ont-coal); color: var(--ont-cream); }
+  .ont-cl__view { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; text-align: center; background: rgba(22,19,17,.85); color: var(--ont-cream); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 13px; transform: translateY(100%); transition: transform .35s ease; }
+  .ont-cl__card:hover .ont-cl__view { transform: translateY(0); }
+
+  .ont-cl__vendor { margin: 0 0 4px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ont-gold); }
+  .ont-cl__name { margin: 0; font-size: 14px; line-height: 1.4; font-weight: 400; color: var(--ont-ink); }
+  .ont-cl__price { margin: 6px 0 0; font-size: 14px; color: var(--ont-stone); }
+  .ont-cl__now { color: var(--ont-gold); font-weight: 500; }
+  .ont-cl__was { color: rgba(110,103,92,.65); margin-left: 6px; }
+
+  .ont-cl__empty { text-align: center; padding: 60px 0; }
+  .ont-cl__empty p { font-size: 15px; color: var(--ont-stone); margin: 0 0 24px; }
+
+  .ont-cl__pagination { margin-top: 56px; display: flex; justify-content: center; }
+  .ont-cl__pagination .pagination__list, .ont-cl__pagination ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; align-items: center; }
+  .ont-cl__pagination a, .ont-cl__pagination span { display: grid; place-items: center; min-width: 40px; height: 40px; padding: 0 8px; font-size: 13px; color: var(--ont-ink); text-decoration: none; border: 1px solid rgba(22,19,17,.14); transition: background-color .3s, color .3s, border-color .3s; }
+  .ont-cl__pagination a:hover { border-color: var(--ont-gold); color: var(--ont-gold); }
+  .ont-cl__pagination .pagination__item--current, .ont-cl__pagination [aria-current] { background: var(--ont-ink); color: var(--ont-cream); border-color: var(--ont-ink); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Onterior collection",
+  "tag": "section",
+  "class": "section-onterior-collection",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Collection" },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 8, "max": 24, "step": 4, "default": 12 },
+    { "type": "checkbox", "id": "show_sort", "label": "Show sort dropdown", "default": true },
+    { "type": "checkbox", "id": "show_vendor", "label": "Show vendor", "default": false }
+  ]
+}
+{% endschema %}

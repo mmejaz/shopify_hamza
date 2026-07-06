@@ -1,0 +1,185 @@
+{%- comment -%}
+  Onterior — site footer. Brand + tagline + socials, two link columns,
+  contact details, a working newsletter form, and a copyright bar.
+  Replaces the stock Trade footer via footer-group.json.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<footer class="ont onterior-footer" style="background: var(--ont-ink);">
+  <div class="ont-container ont-foot__grid">
+
+    {%- comment -%} Brand {%- endcomment -%}
+    <div class="ont-foot__brandcol">
+      <a href="{{ routes.root_url }}" class="ont-foot__brand">
+        <span class="ont-foot__mark">{{ section.settings.monogram | default: 'O' }}</span>
+        <span class="ont-foot__brandtext">
+          <span class="ont-foot__brandname">{{ section.settings.brand_name | default: 'ONTERIOR' }}</span>
+          <span class="ont-foot__brandsub">{{ section.settings.brand_sub | default: 'ENTERPRISES' }}</span>
+        </span>
+      </a>
+      {%- if section.settings.tagline != blank -%}<p class="ont-foot__tagline">{{ section.settings.tagline }}</p>{%- endif -%}
+      <div class="ont-foot__socials">
+        {%- if section.settings.instagram != blank -%}
+          <a href="{{ section.settings.instagram }}" aria-label="Instagram" class="ont-foot__social" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.facebook != blank -%}
+          <a href="{{ section.settings.facebook }}" aria-label="Facebook" class="ont-foot__social" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.pinterest != blank -%}
+          <a href="{{ section.settings.pinterest }}" aria-label="Pinterest" class="ont-foot__social" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C24 5.39 18.635.026 12.017.026z"/></svg>
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Quick links {%- endcomment -%}
+    <nav class="ont-foot__col" aria-label="{{ section.settings.links_heading | default: 'Quick Links' }}">
+      <p class="ont-foot__h">{{ section.settings.links_heading | default: 'Quick Links' }}</p>
+      <ul class="ont-foot__list">
+        {%- assign foot_hide = ',' | append: section.settings.hide_items | downcase | replace: ' ', '' | append: ',' -%}
+        {%- if section.settings.links_menu != blank and section.settings.links_menu.links.size > 0 -%}
+          {%- for link in section.settings.links_menu.links -%}
+            {%- assign flt_key = ',' | append: link.title | downcase | replace: ' ', '' | append: ',' -%}
+            {%- unless foot_hide contains flt_key -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- else -%}
+          <li><a href="{{ routes.root_url }}">Home</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}">Collections</a></li>
+          <li><a href="/pages/about">About Us</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    {%- comment -%} Customer care {%- endcomment -%}
+    <nav class="ont-foot__col" aria-label="{{ section.settings.care_heading | default: 'Customer Care' }}">
+      <p class="ont-foot__h">{{ section.settings.care_heading | default: 'Customer Care' }}</p>
+      <ul class="ont-foot__list">
+        {%- if section.settings.care_menu != blank and section.settings.care_menu.links.size > 0 -%}
+          {%- for link in section.settings.care_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        {%- else -%}
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shipping &amp; Delivery</a></li>
+          <li><a href="#">Returns &amp; Exchanges</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="{{ shop.privacy_policy.url | default: '#' }}">Privacy Policy</a></li>
+          <li><a href="{{ shop.terms_of_service.url | default: '#' }}">Terms &amp; Conditions</a></li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    {%- comment -%} Contact {%- endcomment -%}
+    <div class="ont-foot__col">
+      <p class="ont-foot__h">{{ section.settings.contact_heading | default: 'Contact' }}</p>
+      <ul class="ont-foot__list">
+        {%- if section.settings.phone != blank -%}<li><a href="tel:{{ section.settings.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ section.settings.phone }}</a></li>{%- endif -%}
+        {%- if section.settings.email != blank -%}<li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>{%- endif -%}
+        {%- if section.settings.address != blank -%}<li>{{ section.settings.address }}</li>{%- endif -%}
+      </ul>
+    </div>
+
+    {%- comment -%} Newsletter {%- endcomment -%}
+    <div class="ont-foot__newsletter">
+      <p class="ont-foot__h">{{ section.settings.newsletter_heading | default: 'Stay Inspired' }}</p>
+      {%- if section.settings.newsletter_text != blank -%}<p class="ont-foot__ntext">{{ section.settings.newsletter_text }}</p>{%- endif -%}
+      {%- form 'customer', class: 'ont-foot__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" required placeholder="{{ section.settings.newsletter_placeholder | default: 'Enter your email' }}"
+               aria-label="Email" class="ont-foot__input">
+        <button type="submit" class="ont-foot__submit" aria-label="Subscribe">
+          <svg width="18" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 6h19M15 1l5 5-5 5"/></svg>
+        </button>
+      {%- endform -%}
+      {%- if form.posted_successfully? -%}<p class="ont-foot__msg">Thank you for subscribing!</p>{%- endif -%}
+    </div>
+
+  </div>
+
+  <div class="ont-foot__bar">
+    <div class="ont-container">
+      <p class="ont-foot__copy">{{ section.settings.copyright | default: '© 2026 Onterior Enterprises. All rights reserved.' }}</p>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .onterior-footer { color: var(--ont-faded); }
+  .ont-foot__grid { display: grid; grid-template-columns: 1fr; gap: 40px; padding-top: 56px; padding-bottom: 40px; }
+  @media (min-width: 640px)  { .ont-foot__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .ont-foot__grid { grid-template-columns: 340px 1fr 1fr 1fr 1.3fr; gap: 40px; } }
+  .ont-foot__brandcol { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .ont-foot__brandcol { grid-column: auto; } }
+
+  .ont-foot__brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .ont-foot__mark { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(201,160,94,.7); color: var(--ont-cream); font-family: var(--ont-serif); font-size: 18px; }
+  .ont-foot__brandname { display: block; font-family: var(--ont-serif); color: var(--ont-cream); font-size: 17px; letter-spacing: .14em; }
+  .ont-foot__brandsub { display: block; color: var(--ont-sand); font-size: 9px; letter-spacing: .34em; font-weight: 500; }
+  .ont-foot__tagline { margin: 24px 0 0; max-width: 250px; font-size: 13px; font-weight: 300; line-height: 1.9; }
+  .ont-foot__socials { margin-top: 26px; display: flex; gap: 14px; }
+  .ont-foot__social { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.04); color: var(--ont-cream); transition: color .3s ease, background-color .3s ease, border-color .3s ease, transform .3s ease; }
+  .ont-foot__social:hover { color: var(--ont-ink); background: var(--ont-sand); border-color: var(--ont-sand); transform: translateY(-3px); }
+  .ont-foot__social svg { width: 19px; height: 19px; display: block; }
+
+  .ont-foot__h { color: var(--ont-cream); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; margin: 0 0 24px; }
+  .ont-foot__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .ont-foot__list a, .ont-foot__list li { color: var(--ont-faded); font-size: 13px; font-weight: 300; text-decoration: none; transition: color .3s; }
+  .ont-foot__list a:hover { color: var(--ont-sand); }
+
+  .ont-foot__newsletter { grid-column: 1 / -1; }
+  @media (min-width: 1024px) { .ont-foot__newsletter { grid-column: auto; } }
+  .ont-foot__ntext { margin: 0 0 20px; font-size: 13px; font-weight: 300; line-height: 1.6; }
+  .ont-foot__form { display: flex; max-width: 28rem; }
+  .ont-foot__input { flex: 1; min-width: 0; background: transparent; border: 1px solid rgba(255,255,255,.2); border-right: 0; padding: 12px 16px; font-size: 13px; color: var(--ont-cream); }
+  .ont-foot__input::placeholder { color: rgba(167,158,144,.7); }
+  .ont-foot__input:focus { outline: none; border-color: var(--ont-sand); }
+  .ont-foot__submit { background: var(--ont-bronze); color: var(--ont-ink); border: 0; padding: 0 20px; display: grid; place-items: center; cursor: pointer; transition: background-color .3s; }
+  .ont-foot__submit:hover { background: var(--ont-sand); }
+  .ont-foot__msg { margin: 12px 0 0; font-size: 12px; color: var(--ont-sand); }
+
+  .ont-foot__bar { border-top: 1px solid rgba(255,255,255,.1); }
+  .ont-foot__copy { text-align: center; padding: 24px 0; margin: 0; font-size: 12px; font-weight: 300; color: rgba(167,158,144,.8); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Onterior footer",
+  "settings": [
+    { "type": "header", "content": "Brand" },
+    { "type": "text", "id": "monogram", "label": "Monogram", "default": "O" },
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "ONTERIOR" },
+    { "type": "text", "id": "brand_sub", "label": "Brand subtitle", "default": "ENTERPRISES" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Luxury home decor trays and handcrafted leather goods, designed to elevate your everyday living." },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" },
+    { "type": "url", "id": "facebook", "label": "Facebook URL" },
+    { "type": "url", "id": "pinterest", "label": "Pinterest URL" },
+    { "type": "header", "content": "Quick links" },
+    { "type": "text", "id": "links_heading", "label": "Heading", "default": "Quick Links" },
+    { "type": "link_list", "id": "links_menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "hide_items", "label": "Hide menu items", "info": "Comma-separated titles to hide.", "default": "Projects, Customization" },
+    { "type": "header", "content": "Customer care" },
+    { "type": "text", "id": "care_heading", "label": "Heading", "default": "Customer Care" },
+    { "type": "link_list", "id": "care_menu", "label": "Menu (optional)" },
+    { "type": "header", "content": "Contact" },
+    { "type": "text", "id": "contact_heading", "label": "Heading", "default": "Contact" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "(336) 475-0548" },
+    { "type": "text", "id": "email", "label": "Email", "default": "info@onteriorenterprises.com" },
+    { "type": "textarea", "id": "address", "label": "Address", "default": "Greensboro, NC, USA" },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "Stay Inspired" },
+    { "type": "text", "id": "newsletter_text", "label": "Text", "default": "Join our newsletter for new arrivals and exclusive offers." },
+    { "type": "text", "id": "newsletter_placeholder", "label": "Input placeholder", "default": "Enter your email" },
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "copyright", "label": "Copyright", "default": "© 2026 Onterior Enterprises. All rights reserved." }
+  ]
+}
+{% endschema %}

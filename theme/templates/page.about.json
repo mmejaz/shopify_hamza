@@ -4,10 +4,13 @@
       "type": "about-hero",
       "settings": {
         "eyebrow": "About Onterior Enterprises",
-        "heading": "Crafted With Purpose. Designed <em>For Life.</em>",
+        "heading": "Crafted With Purpose.",
+        "heading_line2": "Designed <em>For Life.</em>",
         "body": "<p>At Onterior Enterprises, we create luxury leather trays and home accents that blend timeless elegance, functionality, and uncompromising quality. Every piece we make is a reflection of our passion for craftsmanship and our commitment to elevating the spaces you love.</p>",
         "button_label": "Explore Our Collections",
-        "button_link": "shopify://collections/all"
+        "button_link": "shopify://collections/all",
+        "image_asset": "onterior-about-hero.jpg",
+        "image_alt": "Luxury leather tray with candle and home accents"
       }
     },
     "story": {
@@ -22,7 +25,9 @@
       "settings": {
         "eyebrow": "Our Story",
         "heading": "Where Craftsmanship Meets <em>Timeless Living.</em>",
-        "body": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>"
+        "body": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>",
+        "image_asset": "onterior-story.jpg",
+        "image_alt": "Artisan crafting fine leather goods"
       }
     },
     "stats": {
@@ -54,6 +59,8 @@
     "quote": {
       "type": "about-quote",
       "settings": {
+        "image_asset": "onterior-quote.jpg",
+        "image_alt": "Candle and leather tray in a softly lit interior",
         "quote": "<p>We don't just create products, we create experiences that become a part of your life.</p>",
         "attribution": "Onterior Enterprises"
       }

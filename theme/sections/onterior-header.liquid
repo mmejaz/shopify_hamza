@@ -1,0 +1,186 @@
+{%- comment -%}
+  Onterior — custom header. Transparent overlay on the homepage hero, solid ink
+  elsewhere and on scroll. Monogram logo, uppercase gold-underline nav with
+  dropdowns from the chosen menu, and search / account / cart icons.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+{%- if request.page_type == 'index' -%}{%- assign is_overlay = true -%}{%- else -%}{%- assign is_overlay = false -%}{%- endif -%}
+{%- assign menu = section.settings.menu -%}
+{%- comment -%} Menu items to hide (comma-separated titles), normalised for matching {%- endcomment -%}
+{%- assign hide_wrapped = ',' | append: section.settings.hide_items | downcase | replace: ' ', '' | append: ',' -%}
+
+<header
+  class="ont onterior-header{% unless is_overlay %} is-solid{% endunless %}"
+  data-overlay="{{ is_overlay }}"
+  id="onterior-header">
+  <div class="ont-container ont-hdr__bar">
+
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="ont-hdr__logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 320 | image_tag: alt: shop.name, class: 'ont-hdr__logoimg', widths: '120, 200, 320', loading: 'eager' }}
+      {%- else -%}
+        <span class="ont-hdr__mark">{{ section.settings.monogram | default: 'O' }}</span>
+        <span class="ont-hdr__logotext">
+          <span class="ont-hdr__logoname">{{ section.settings.brand_name | default: 'ONTERIOR' }}</span>
+          <span class="ont-hdr__logosub">{{ section.settings.brand_sub | default: 'ENTERPRISES' }}</span>
+        </span>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Desktop nav {%- endcomment -%}
+    <nav class="ont-hdr__nav" aria-label="Primary">
+      {%- for link in menu.links -%}
+        {%- assign lt_key = ',' | append: link.title | downcase | replace: ' ', '' | append: ',' -%}
+        {%- unless hide_wrapped contains lt_key -%}
+          {%- if link.links.size > 0 -%}
+            <div class="ont-hdr__item ont-hdr__has-drop">
+              <a href="{{ link.url }}" class="ont-hdr__link">{{ link.title }}
+                <svg class="ont-hdr__caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.2"/></svg>
+              </a>
+              <div class="ont-hdr__drop">
+                <div class="ont-hdr__dropinner">
+                  {%- for child in link.links -%}
+                    <a href="{{ child.url }}" class="ont-hdr__dropitem">{{ child.title }}</a>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          {%- else -%}
+            <a href="{{ link.url }}" class="ont-hdr__link{% if link.current %} is-active{% endif %}">{{ link.title }}</a>
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </nav>
+
+    {%- comment -%} Icons {%- endcomment -%}
+    <div class="ont-hdr__icons">
+      <a href="{{ routes.search_url }}" class="ont-hdr__icon" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </a>
+      <a href="{{ routes.account_url }}" class="ont-hdr__icon ont-hdr__icon--account" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="ont-hdr__icon ont-hdr__cart" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 7h12l1.2 13H4.8L6 7z"/><path d="M9 10V6a3 3 0 016 0v4"/></svg>
+        <span class="ont-hdr__count{% if cart.item_count == 0 %} is-empty{% endif %}">{{ cart.item_count }}</span>
+      </a>
+      <button class="ont-hdr__burger" aria-label="Menu" aria-expanded="false" data-hdr-toggle>
+        <svg class="ont-hdr__burgeropen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="ont-hdr__burgerclose" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile menu {%- endcomment -%}
+  <div class="ont-hdr__mobile" data-hdr-mobile hidden>
+    <nav class="ont-container ont-hdr__mnav" aria-label="Mobile">
+      {%- for link in menu.links -%}
+        {%- assign lt_key = ',' | append: link.title | downcase | replace: ' ', '' | append: ',' -%}
+        {%- unless hide_wrapped contains lt_key -%}
+          <a href="{{ link.url }}" class="ont-hdr__mlink">{{ link.title }}</a>
+          {%- for child in link.links -%}
+            <a href="{{ child.url }}" class="ont-hdr__mlink ont-hdr__mchild">{{ child.title }}</a>
+          {%- endfor -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+</header>
+{%- unless is_overlay -%}<div class="ont-hdr__spacer" aria-hidden="true"></div>{%- endunless -%}
+
+<script>
+(function(){
+  var h = document.getElementById('onterior-header');
+  if(!h || h.dataset.init) return; h.dataset.init = '1';
+  var overlay = h.dataset.overlay === 'true';
+  if(overlay){
+    var onScroll = function(){ h.classList.toggle('is-solid', window.scrollY > 40); };
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  }
+  var btn = h.querySelector('[data-hdr-toggle]');
+  var menu = h.querySelector('[data-hdr-mobile]');
+  if(btn && menu){
+    btn.addEventListener('click', function(){
+      var open = h.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open){ menu.hidden = false; } else { menu.hidden = true; }
+    });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ h.classList.remove('is-open'); menu.hidden = true; btn.setAttribute('aria-expanded','false'); }); });
+  }
+})();
+</script>
+
+{% stylesheet %}
+  .onterior-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; color: var(--ont-cream); transition: background-color .3s ease, box-shadow .3s ease; }
+  .onterior-header.is-solid { background: var(--ont-ink); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+  .ont-hdr__spacer { display: block !important; height: var(--ont-header-h); background: var(--ont-ink); }
+  .ont-hdr__bar { display: flex; align-items: center; justify-content: space-between; height: var(--ont-header-h); }
+
+  /* Logo */
+  .ont-hdr__logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+  .ont-hdr__logoimg { max-height: 44px; width: auto; }
+  .ont-hdr__mark { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(201,160,94,.7); color: var(--ont-cream); font-family: var(--ont-serif); font-size: 18px; line-height: 1; }
+  .ont-hdr__logoname { display: block; font-family: var(--ont-serif); color: var(--ont-cream); font-size: 17px; letter-spacing: .14em; line-height: 1.1; }
+  .ont-hdr__logosub { display: block; color: var(--ont-sand); font-size: 9px; letter-spacing: .34em; font-weight: 500; }
+
+  /* Desktop nav */
+  .ont-hdr__nav { display: none; align-items: center; gap: 36px; }
+  @media (min-width: 1024px) { .ont-hdr__nav { display: flex; } }
+  .ont-hdr__item { position: relative; }
+  .ont-hdr__link { position: relative; display: inline-flex; align-items: center; gap: 6px; color: rgba(247,243,236,.9); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; font-weight: 500; text-decoration: none; padding: 6px 0; transition: color .3s; }
+  .ont-hdr__link::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0; background: var(--ont-sand); transition: width .3s ease; }
+  .ont-hdr__link:hover, .ont-hdr__link.is-active { color: #fff; }
+  .ont-hdr__link:hover::after, .ont-hdr__link.is-active::after { width: 100%; }
+  .ont-hdr__caret { transition: transform .3s ease; }
+  .ont-hdr__has-drop:hover .ont-hdr__caret { transform: rotate(180deg); }
+
+  /* Dropdown */
+  .ont-hdr__drop { position: absolute; left: 50%; top: 100%; transform: translateX(-50%) translateY(8px); padding-top: 16px; opacity: 0; visibility: hidden; transition: opacity .3s ease, transform .3s ease; }
+  .ont-hdr__has-drop:hover .ont-hdr__drop { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .ont-hdr__dropinner { width: 210px; background: rgba(22,19,17,.97); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.1); padding: 12px 0; }
+  .ont-hdr__dropitem { display: block; padding: 8px 20px; color: rgba(247,243,236,.8); font-size: 13px; text-decoration: none; transition: color .2s, background-color .2s; }
+  .ont-hdr__dropitem:hover { color: var(--ont-sand); background: rgba(255,255,255,.05); }
+
+  /* Icons */
+  .ont-hdr__icons { display: flex; align-items: center; gap: 20px; color: rgba(247,243,236,.9); }
+  @media (min-width: 1024px) { .ont-hdr__icons { gap: 24px; } }
+  .ont-hdr__icon { color: inherit; display: grid; place-items: center; transition: color .3s; }
+  .ont-hdr__icon:hover { color: var(--ont-sand); }
+  .ont-hdr__icon svg { width: 19px; height: 19px; }
+  .ont-hdr__icon--account { display: none; }
+  @media (min-width: 640px) { .ont-hdr__icon--account { display: grid; } }
+  .ont-hdr__cart { position: relative; }
+  .ont-hdr__count { position: absolute; top: -8px; right: -9px; min-width: 16px; height: 16px; padding: 0 3px; display: grid; place-items: center; border-radius: 999px; background: var(--ont-bronze); color: var(--ont-ink); font-size: 9px; font-weight: 600; }
+  .ont-hdr__count.is-empty { display: none; }
+  .ont-hdr__burger { display: grid; place-items: center; background: none; border: 0; color: inherit; cursor: pointer; padding: 4px; }
+  .ont-hdr__burger svg { width: 22px; height: 22px; }
+  @media (min-width: 1024px) { .ont-hdr__burger { display: none; } }
+  .ont-hdr__burgerclose { display: none; }
+  .is-open .ont-hdr__burgeropen { display: none; }
+  .is-open .ont-hdr__burgerclose { display: block; }
+
+  /* Mobile menu */
+  .ont-hdr__mobile { background: rgba(22,19,17,.98); border-top: 1px solid rgba(255,255,255,.08); }
+  .is-open:not(.is-solid) { background: var(--ont-ink); }
+  .ont-hdr__mnav { display: flex; flex-direction: column; padding-top: 8px; padding-bottom: 16px; }
+  .ont-hdr__mlink { color: rgba(247,243,236,.9); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); transition: color .2s; }
+  .ont-hdr__mlink:hover { color: var(--ont-sand); }
+  .ont-hdr__mchild { padding-left: 16px; text-transform: none; letter-spacing: normal; font-size: 13px; color: rgba(247,243,236,.65); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Onterior header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image (optional)" },
+    { "type": "text", "id": "monogram", "label": "Monogram", "default": "O" },
+    { "type": "text", "id": "brand_name", "label": "Brand name", "default": "ONTERIOR" },
+    { "type": "text", "id": "brand_sub", "label": "Brand subtitle", "default": "ENTERPRISES" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "hide_items", "label": "Hide menu items", "info": "Comma-separated menu titles to hide (e.g. Projects, Customization).", "default": "Projects, Customization" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,127 @@
+{%- comment -%}
+  Onterior — Home hero. Full-bleed image slider with overlay copy + dots.
+  Slides are blocks (image_picker). Autoplays; dots + swipe navigate.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-hero" id="onterior-hero-{{ section.id }}" data-interval="{{ section.settings.autoplay | times: 1000 }}">
+  <div class="ont-hero__slides">
+    {%- for block in section.blocks -%}
+      {%- if forloop.first -%}{%- assign hero_loading = 'eager' -%}{%- else -%}{%- assign hero_loading = 'lazy' -%}{%- endif -%}
+      <div class="ont-hero__slide{% if forloop.first %} is-active{% endif %}" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          {%- assign hero_alt = block.settings.image.alt | default: block.settings.alt | default: 'Onterior luxury interior' -%}
+          {{ block.settings.image | image_url: width: 2000 | image_tag:
+            loading: hero_loading,
+            sizes: '100vw', widths: '800, 1200, 1600, 2000', alt: hero_alt, class: 'ont-hero__img' }}
+        {%- elsif block.settings.image_asset != blank -%}
+          <img class="ont-hero__img" src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.alt | escape }}" loading="{{ hero_loading }}" width="2000" height="1125">
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'ont-hero__img ont-hero__ph' }}
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+    <span class="ont-hero__scrim" aria-hidden="true"></span>
+  </div>
+
+  <div class="ont-container ont-hero__inner">
+    {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow ont-hero__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h1 class="ont-serif ont-hero__title">{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.subtext != blank -%}<p class="ont-hero__sub">{{ section.settings.subtext }}</p>{%- endif -%}
+    <div class="ont-hero__actions">
+      {%- if section.settings.button1_label != blank -%}
+        <a class="ont-hero__btn" href="{{ section.settings.button1_link | default: '#' }}">{{ section.settings.button1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button2_label != blank -%}
+        <a class="ont-hero__link" href="{{ section.settings.button2_link | default: '#' }}">{{ section.settings.button2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <div class="ont-hero__dots" role="tablist">
+      {%- for block in section.blocks -%}
+        <button class="ont-hero__dot{% if forloop.first %} is-active{% endif %}" data-i="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script>
+(function(){
+  var root = document.getElementById('onterior-hero-{{ section.id }}');
+  if(!root || root.dataset.init) return; root.dataset.init = '1';
+  var slides = root.querySelectorAll('.ont-hero__slide');
+  var dots = root.querySelectorAll('.ont-hero__dot');
+  if(slides.length < 2) return;
+  var i = 0, interval = parseInt(root.dataset.interval,10) || 5000, timer;
+  function go(n){
+    slides[i].classList.remove('is-active'); if(dots[i]) dots[i].classList.remove('is-active');
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add('is-active'); if(dots[i]) dots[i].classList.add('is-active');
+  }
+  function start(){ timer = setInterval(function(){ go(i+1); }, interval); }
+  function stop(){ clearInterval(timer); }
+  dots.forEach(function(d){ d.addEventListener('click', function(){ stop(); go(+d.dataset.i); start(); }); });
+  root.addEventListener('mouseenter', stop); root.addEventListener('mouseleave', start);
+  if(!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+})();
+</script>
+
+{% stylesheet %}
+  .onterior-hero { position: relative; height: 520px; overflow: hidden; background: var(--ont-ink); }
+  @media (min-width: 640px) { .onterior-hero { height: 560px; } }
+  .ont-hero__inner { padding-top: var(--ont-header-h); }
+  .ont-hero__slides { position: absolute; inset: 0; }
+  .ont-hero__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
+  .ont-hero__slide.is-active { opacity: 1; }
+  .ont-hero__img { width: 100%; height: 100%; object-fit: cover; }
+  .ont-hero__ph { background: var(--ont-coal); }
+  .ont-hero__scrim { position: absolute; inset: 0; background: linear-gradient(to right, rgba(22,19,17,.85), rgba(22,19,17,.4) 55%, transparent); }
+  .ont-hero__inner { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding-top: 40px; }
+  .ont-hero__eyebrow { color: var(--ont-sand); margin-bottom: 20px; }
+  .ont-hero__title { color: var(--ont-cream); font-weight: 500; font-size: 42px; line-height: 1.08; max-width: 560px; margin: 0; }
+  @media (min-width: 640px) { .ont-hero__title { font-size: 52px; } }
+  @media (min-width: 1024px) { .ont-hero__title { font-size: 64px; } }
+  .ont-hero__sub { margin-top: 24px; max-width: 340px; color: rgba(247,243,236,.75); font-size: 14.5px; line-height: 1.65; font-weight: 300; }
+  .ont-hero__actions { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+  @media (min-width: 640px) { .ont-hero__actions { gap: 36px; } }
+  .ont-hero__btn { border: 1px solid rgba(247,243,236,.7); color: var(--ont-cream); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; padding: 15px 32px; text-decoration: none; transition: background-color .3s, color .3s; }
+  .ont-hero__btn:hover { background: var(--ont-cream); color: var(--ont-ink); }
+  .ont-hero__link { color: var(--ont-cream); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 500; padding-bottom: 4px; border-bottom: 1px solid transparent; text-decoration: none; transition: border-color .3s; }
+  .ont-hero__link:hover { border-color: var(--ont-sand); }
+  .ont-hero__dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 12px; }
+  .ont-hero__dot { height: 3px; width: 32px; border: 0; padding: 0; cursor: pointer; background: rgba(247,243,236,.3); transition: background-color .3s; }
+  .ont-hero__dot.is-active { background: var(--ont-sand); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Home hero",
+  "tag": "section",
+  "class": "section-onterior-hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Luxury in Every Detail" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Elevate Your Everyday Living" },
+    { "type": "text", "id": "subtext", "label": "Subtext", "default": "Premium home decor trays and leather goods crafted with timeless elegance and impeccable craftsmanship." },
+    { "type": "text", "id": "button1_label", "label": "Primary button label", "default": "Shop Collection" },
+    { "type": "url", "id": "button1_link", "label": "Primary button link" },
+    { "type": "text", "id": "button2_label", "label": "Secondary link label", "default": "Explore Custom" },
+    { "type": "url", "id": "button2_link", "label": "Secondary link" },
+    { "type": "range", "id": "autoplay", "label": "Autoplay seconds", "min": 3, "max": 10, "step": 1, "default": 5, "unit": "s" }
+  ],
+  "blocks": [
+    { "type": "slide", "name": "Slide", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image (upload)" },
+      { "type": "text", "id": "image_asset", "label": "Asset image filename", "info": "Fallback: a file in assets/, e.g. onterior-banner-1.png. Ignored if an image is uploaded above." },
+      { "type": "text", "id": "alt", "label": "Alt text" }
+    ] }
+  ],
+  "max_blocks": 6,
+  "presets": [{
+    "name": "Home hero",
+    "blocks": [ { "type": "slide" }, { "type": "slide" }, { "type": "slide" } ]
+  }]
+}
+{% endschema %}

@@ -13,6 +13,8 @@
           loading: 'lazy', sizes: '(min-width: 1024px) 50vw, 100vw', widths: '600, 900, 1200',
           alt: quote_alt,
           class: 'ont-quote__img' }}
+      {%- elsif section.settings.image_asset != blank -%}
+        <img class="ont-quote__img" src="{{ section.settings.image_asset | asset_url }}" alt="{{ section.settings.image_alt | default: 'Candle and leather tray in a softly lit interior' | escape }}" loading="lazy" width="1200" height="675">
       {%- else -%}
         {{ 'lifestyle-2' | placeholder_svg_tag: 'ont-quote__img ont-placeholder' }}
       {%- endif -%}
@@ -47,7 +49,8 @@
   @media (min-width: 1024px) { .ont-quote__inner { padding: 80px 64px; } }
   .ont-quote__mark { display: inline-block; color: var(--ont-gold); margin-bottom: 24px; }
   .ont-quote__mark svg { width: 40px; height: 40px; }
-  .ont-quote__text { font-size: 24px; line-height: 1.5; margin: 0; font-weight: 500; }
+  .ont-quote__text { font-size: 24px; line-height: 1.5; margin: 0; font-weight: 500; color: #fff; }
+  .ont-quote__text p { margin: 0; color: #fff; }
   @media (min-width: 640px) { .ont-quote__text { font-size: 28px; } }
   .ont-quote__by { margin-top: 28px; font-size: 30px; color: var(--ont-gold2); }
   .ont-placeholder { background: var(--ont-linen); position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -59,7 +62,9 @@
   "tag": "section",
   "class": "section-onterior-quote",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image (upload)" },
+    { "type": "text", "id": "image_asset", "label": "Image asset filename", "info": "Fallback: a file in assets/, e.g. onterior-quote.jpg." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
     { "type": "richtext", "id": "quote", "label": "Quote", "default": "<p>We don't just create products, we create experiences that become a part of your life.</p>" },
     { "type": "text", "id": "attribution", "label": "Attribution", "default": "Onterior Enterprises" }
   ],
