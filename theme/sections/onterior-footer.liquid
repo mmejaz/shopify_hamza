@@ -106,8 +106,17 @@
   </div>
 
   <div class="ont-foot__bar">
-    <div class="ont-container">
+    <div class="ont-container ont-foot__barinner">
       <p class="ont-foot__copy">{{ section.settings.copyright | default: '© 2026 Onterior Enterprises. All rights reserved.' }}</p>
+      {%- if section.settings.credit_text != blank -%}
+        <p class="ont-foot__credit">
+          {%- if section.settings.credit_url != blank -%}
+            <a href="{{ section.settings.credit_url }}" target="_blank" rel="noopener">{{ section.settings.credit_text }}</a>
+          {%- else -%}
+            {{ section.settings.credit_text }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
     </div>
   </div>
 </footer>
@@ -147,7 +156,12 @@
   .ont-foot__msg { margin: 12px 0 0; font-size: 12px; color: var(--ont-sand); }
 
   .ont-foot__bar { border-top: 1px solid rgba(255,255,255,.1); }
-  .ont-foot__copy { text-align: center; padding: 24px 0; margin: 0; font-size: 12px; font-weight: 300; color: rgba(167,158,144,.8); }
+  .ont-foot__barinner { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 0; text-align: center; }
+  @media (min-width: 768px) { .ont-foot__barinner { flex-direction: row; justify-content: space-between; gap: 16px; } }
+  .ont-foot__copy { margin: 0; font-size: 12px; font-weight: 300; color: rgba(167,158,144,.8); }
+  .ont-foot__credit { margin: 0; font-size: 12px; font-weight: 300; color: rgba(167,158,144,.8); }
+  .ont-foot__credit a { color: rgba(167,158,144,.8); text-decoration: none; transition: color .3s; }
+  .ont-foot__credit a:hover { color: var(--ont-sand); }
 {% endstylesheet %}
 
 {% schema %}
@@ -179,7 +193,9 @@
     { "type": "text", "id": "newsletter_text", "label": "Text", "default": "Join our newsletter for new arrivals and exclusive offers." },
     { "type": "text", "id": "newsletter_placeholder", "label": "Input placeholder", "default": "Enter your email" },
     { "type": "header", "content": "Bottom bar" },
-    { "type": "text", "id": "copyright", "label": "Copyright", "default": "© 2026 Onterior Enterprises. All rights reserved." }
+    { "type": "text", "id": "copyright", "label": "Copyright", "default": "© 2026 Onterior Enterprises. All rights reserved." },
+    { "type": "text", "id": "credit_text", "label": "Credit text", "default": "Website by Orbital Technologies LLC" },
+    { "type": "text", "id": "credit_url", "label": "Credit link URL", "default": "https://orbitaltechltd.com/" }
   ]
 }
 {% endschema %}

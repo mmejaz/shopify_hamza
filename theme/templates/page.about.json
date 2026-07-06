@@ -9,8 +9,8 @@
         "body": "<p>At Onterior Enterprises, we create luxury leather trays and home accents that blend timeless elegance, functionality, and uncompromising quality. Every piece we make is a reflection of our passion for craftsmanship and our commitment to elevating the spaces you love.</p>",
         "button_label": "Explore Our Collections",
         "button_link": "shopify://collections/all",
-        "image_asset": "onterior-about-hero.jpg",
-        "image_alt": "Luxury leather tray with candle and home accents"
+        "image_asset": "onterior-about-top.jpg",
+        "image_alt": "Onterior leather tray and coasters styled on a marble table"
       }
     },
     "story": {
@@ -26,8 +26,8 @@
         "eyebrow": "Our Story",
         "heading": "Where Craftsmanship Meets <em>Timeless Living.</em>",
         "body": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>",
-        "image_asset": "onterior-story.jpg",
-        "image_alt": "Artisan crafting fine leather goods"
+        "image_asset": "onterior-our-story.jpg",
+        "image_alt": "Round leather tray styled with a candle, books and diffuser"
       }
     },
     "stats": {
@@ -44,10 +44,10 @@
     "process": {
       "type": "about-process",
       "blocks": {
-        "p1": { "type": "step", "settings": { "number": "01", "title": "Finest Materials", "text": "We source the best leather and metals from trusted suppliers." } },
-        "p2": { "type": "step", "settings": { "number": "02", "title": "Skilled Craftsmanship", "text": "Our artisans handcraft every detail with precision and care." } },
-        "p3": { "type": "step", "settings": { "number": "03", "title": "Quality Check", "text": "Every piece is inspected to ensure perfection." } },
-        "p4": { "type": "step", "settings": { "number": "04", "title": "Perfectly Packed", "text": "Carefully packaged to reach you in perfect condition." } }
+        "p1": { "type": "step", "settings": { "number": "01", "title": "Finest Materials", "text": "We source the best leather and metals from trusted suppliers.", "image_asset": "onterior-process-4.jpg" } },
+        "p2": { "type": "step", "settings": { "number": "02", "title": "Skilled Craftsmanship", "text": "Our artisans handcraft every detail with precision and care.", "image_asset": "onterior-process-3.jpg" } },
+        "p3": { "type": "step", "settings": { "number": "03", "title": "Quality Check", "text": "Every piece is inspected to ensure perfection.", "image_asset": "onterior-process-2.jpg" } },
+        "p4": { "type": "step", "settings": { "number": "04", "title": "Perfectly Packed", "text": "Carefully packaged to reach you in perfect condition.", "image_asset": "onterior-process-1.jpg" } }
       },
       "block_order": ["p1", "p2", "p3", "p4"],
       "settings": {
@@ -75,7 +75,15 @@
       },
       "block_order": ["k1", "k2", "k3", "k4"],
       "settings": {}
+    },
+    "closing": {
+      "type": "onterior-image-banner",
+      "settings": {
+        "image_asset": "onterior-about-closing.jpg",
+        "image_alt": "Onterior leather goods flat-lay",
+        "height": 460
+      }
     }
   },
-  "order": ["hero", "story", "stats", "process", "quote", "perks"]
+  "order": ["hero", "story", "stats", "process", "quote", "perks", "closing"]
 }

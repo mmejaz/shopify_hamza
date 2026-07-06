@@ -3,9 +3,9 @@
     "hero": {
       "type": "home-hero",
       "blocks": {
-        "s1": { "type": "slide", "settings": { "image_asset": "onterior-banner-1.png", "alt": "Modern living room with leather sofa and gallery wall" } },
-        "s2": { "type": "slide", "settings": { "image_asset": "onterior-banner-2.png", "alt": "Styled sideboard with round mirror and plants" } },
-        "s3": { "type": "slide", "settings": { "image_asset": "onterior-banner-3.png", "alt": "Warm modern interior styling" } }
+        "s1": { "type": "slide", "settings": { "image_asset": "onterior-slider-1.jpg", "alt": "Luxury living room with a leather tray and candles on a marble table" } },
+        "s2": { "type": "slide", "settings": { "image_asset": "onterior-slider-2.jpg", "alt": "Elegant interior styled with curated home decor" } },
+        "s3": { "type": "slide", "settings": { "image_asset": "onterior-slider-3.jpg", "alt": "Warm modern living space with leather accents" } }
       },
       "block_order": ["s1", "s2", "s3"],
       "settings": {
@@ -33,22 +33,22 @@
         "body": "<p>At Onterior Enterprises, we create bespoke leather goods and home accents that bring refinement, function, and timeless beauty into your space.</p>",
         "link_label": "Our Story",
         "link_url": "shopify://pages/about",
-        "image_asset_1": "onterior-lifestyle-1.png",
-        "alt_1": "Yellow accent chair in a bright modern living room",
-        "image_asset_2": "onterior-lifestyle-2.png",
-        "alt_2": "Styled contemporary interior with warm tones",
-        "image_asset_3": "onterior-lifestyle-3.png",
-        "alt_3": "Elegant living space with curated decor"
+        "image_asset_1": "onterior-feature-materials.png",
+        "alt_1": "Premium materials",
+        "image_asset_2": "onterior-feature-handcrafted.png",
+        "alt_2": "Handcrafted excellence",
+        "image_asset_3": "onterior-feature-bespoke.jpg",
+        "alt_3": "Bespoke customization"
       }
     },
     "collections": {
       "type": "home-collections",
       "blocks": {
-        "c1": { "type": "collection_card", "settings": { "title": "Decor Trays", "description": "Elevate your surfaces with elegance.", "image_asset": "onterior-product-2.png", "link": "shopify://collections/all" } },
-        "c2": { "type": "collection_card", "settings": { "title": "Leather Accessories", "description": "Functional luxury for everyday use.", "image_asset": "onterior-product-3.png", "link": "shopify://collections/all" } },
-        "c3": { "type": "collection_card", "settings": { "title": "Desk & Office", "description": "Organized. Refined. Effortless.", "image_asset": "onterior-product-4.png", "link": "shopify://collections/all" } },
-        "c4": { "type": "collection_card", "settings": { "title": "Tissue Box Covers", "description": "Subtle details, lasting impressions.", "image_asset": "onterior-product-5.png", "link": "shopify://collections/all" } },
-        "c5": { "type": "collection_card", "settings": { "title": "Coasters", "description": "Protection that looks premium.", "image_asset": "onterior-product-1.png", "link": "shopify://collections/all" } }
+        "c1": { "type": "collection_card", "settings": { "title": "Decor Trays", "description": "Elevate your surfaces with elegance.", "image_asset": "onterior-col-decor-trays.jpg", "link": "shopify://collections/all" } },
+        "c2": { "type": "collection_card", "settings": { "title": "Leather Accessories", "description": "Functional luxury for everyday use.", "image_asset": "onterior-col-leather.jpg", "link": "shopify://collections/all" } },
+        "c3": { "type": "collection_card", "settings": { "title": "Desk & Office", "description": "Organized. Refined. Effortless.", "image_asset": "onterior-col-desk.png", "link": "shopify://collections/all" } },
+        "c4": { "type": "collection_card", "settings": { "title": "Tissue Box Covers", "description": "Subtle details, lasting impressions.", "image_asset": "onterior-col-tissue.jpg", "link": "shopify://collections/all" } },
+        "c5": { "type": "collection_card", "settings": { "title": "Coasters", "description": "Protection that looks premium.", "image_asset": "onterior-col-coasters.jpg", "link": "shopify://collections/all" } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5"],
       "settings": {
@@ -72,8 +72,8 @@
     "cta": {
       "type": "home-cta",
       "settings": {
-        "image_asset": "onterior-lower-banner.png",
-        "image_alt": "Styled interior with curated decor",
+        "image_asset": "onterior-inspire.jpg",
+        "image_alt": "Designed to inspire — styled interior with curated leather decor",
         "eyebrow": "Inspired Living",
         "heading": "Designed to Inspire",
         "body": "Each piece is thoughtfully designed to blend beauty with purpose.",

@@ -1,0 +1,63 @@
+{%- comment -%}
+  Onterior — full-width image banner. Optional centered overlay text.
+  Reusable closing/feature visual styled to the brand.
+{%- endcomment -%}
+
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-imgbanner" style="--ib-h: {{ section.settings.height }}px;">
+  {%- if section.settings.image != blank -%}
+    {%- assign ib_alt = section.settings.image.alt | default: section.settings.image_alt -%}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', sizes: '100vw', widths: '800, 1200, 1600, 2000', alt: ib_alt, class: 'ont-ib__img' }}
+  {%- elsif section.settings.image_asset != blank -%}
+    <img class="ont-ib__img" src="{{ section.settings.image_asset | asset_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="2000" height="1000">
+  {%- else -%}
+    {{ 'lifestyle-1' | placeholder_svg_tag: 'ont-ib__img ont-ib__ph' }}
+  {%- endif -%}
+
+  {%- if section.settings.heading != blank or section.settings.eyebrow != blank or section.settings.button_label != blank -%}
+    <span class="ont-ib__scrim" aria-hidden="true"></span>
+    <div class="ont-container ont-ib__inner ont-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow ont-ib__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h2 class="ont-serif ont-ib__title">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="ont-ib__btn" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</section>
+
+<script src="{{ 'onterior.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .onterior-imgbanner { position: relative; overflow: hidden; height: var(--ib-h, 440px); background: var(--ont-coal); display: flex; align-items: center; justify-content: center; }
+  .ont-ib__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ont-ib__ph { background: var(--ont-coal); }
+  .ont-ib__scrim { position: absolute; inset: 0; background: rgba(22,19,17,.45); }
+  .ont-ib__inner { position: relative; z-index: 2; text-align: center; color: var(--ont-cream); }
+  .ont-ib__eyebrow { color: var(--ont-sand); margin-bottom: 16px; }
+  .ont-ib__title { color: var(--ont-cream); font-weight: 500; font-size: 30px; line-height: 1.2; margin: 0; }
+  @media (min-width: 1024px) { .ont-ib__title { font-size: 42px; } }
+  .ont-ib__btn { display: inline-block; margin-top: 28px; border: 1px solid rgba(247,243,236,.7); color: var(--ont-cream); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; font-weight: 500; padding: 14px 32px; text-decoration: none; transition: background-color .3s, color .3s; }
+  .ont-ib__btn:hover { background: var(--ont-cream); color: var(--ont-ink); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image banner",
+  "tag": "section",
+  "class": "section-onterior-imgbanner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image (upload)" },
+    { "type": "text", "id": "image_asset", "label": "Image asset filename", "info": "Fallback: a file in assets/, e.g. onterior-about-closing.jpg." },
+    { "type": "text", "id": "image_alt", "label": "Image alt text" },
+    { "type": "range", "id": "height", "label": "Height", "min": 300, "max": 700, "step": 20, "default": 460, "unit": "px" },
+    { "type": "header", "content": "Optional overlay text" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Image banner" }]
+}
+{% endschema %}

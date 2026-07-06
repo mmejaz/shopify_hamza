@@ -25,6 +25,8 @@
                   loading: 'lazy', sizes: '(min-width: 1024px) 220px, 45vw', widths: '300, 450, 600',
                   alt: step_alt,
                   class: 'ont-step__img' }}
+              {%- elsif block.settings.image_asset != blank -%}
+                <img class="ont-step__img" src="{{ block.settings.image_asset | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="600" height="450">
               {%- else -%}
                 {{ 'product-apparel-1' | placeholder_svg_tag: 'ont-step__img ont-placeholder' }}
               {%- endif -%}
@@ -82,7 +84,8 @@
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "image_picker", "id": "image", "label": "Image (upload)" },
+        { "type": "text", "id": "image_asset", "label": "Image asset filename", "info": "Fallback: a file in assets/, e.g. onterior-process-1.jpg." },
         { "type": "text", "id": "number", "label": "Number", "default": "01" },
         { "type": "text", "id": "title", "label": "Title", "default": "Finest Materials" },
         { "type": "text", "id": "text", "label": "Text", "default": "We source the best leather and metals from trusted suppliers." }
