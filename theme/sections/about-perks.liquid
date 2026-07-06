@@ -4,7 +4,7 @@
 
 {{ 'onterior-base.css' | asset_url | stylesheet_tag }}
 
-<section class="ont onterior-perks" style="background: var(--ont-ink); color: var(--ont-cream);">
+<section class="ont onterior-perks" style="background: var(--ont-cream2); color: var(--ont-ink);">
   <div class="ont-container">
     <div class="ont-perks__grid">
       {%- for block in section.blocks -%}
@@ -21,17 +21,17 @@
 </section>
 
 {% stylesheet %}
-  .onterior-perks { padding-top: 40px; padding-bottom: 40px; border-top: 1px solid rgba(255,255,255,.05); }
+  .onterior-perks { padding-top: 40px; padding-bottom: 40px; border-top: 1px solid rgba(22,19,17,.08); }
   .ont-perks__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
   @media (min-width: 1024px) { .ont-perks__grid { grid-template-columns: repeat(4, 1fr); } }
   .ont-perk { display: flex; align-items: center; gap: 16px; }
   .ont-perk__icon {
     flex: 0 0 auto; display: grid; place-items: center; width: 48px; height: 48px;
-    border-radius: 999px; border: 1px solid rgba(185,138,68,.4); color: var(--ont-gold);
+    border-radius: 999px; border: 1px solid rgba(185,138,68,.55); color: var(--ont-gold);
   }
   .ont-perk__icon svg { width: 20px; height: 20px; }
-  .ont-perk__title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin: 0; }
-  .ont-perk__text { margin-top: 4px; font-size: 12px; line-height: 1.5; color: rgba(247,243,236,.5); }
+  .ont-perk__title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin: 0; color: var(--ont-ink); }
+  .ont-perk__text { margin-top: 4px; font-size: 12px; line-height: 1.5; color: var(--ont-stone); }
 {% endstylesheet %}
 
 {% schema %}

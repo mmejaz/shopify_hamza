@@ -68,12 +68,12 @@
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {%- endfor -%}
         {%- else -%}
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Shipping &amp; Delivery</a></li>
-          <li><a href="#">Returns &amp; Exchanges</a></li>
-          <li><a href="#">Care Instructions</a></li>
-          <li><a href="{{ shop.privacy_policy.url | default: '#' }}">Privacy Policy</a></li>
-          <li><a href="{{ shop.terms_of_service.url | default: '#' }}">Terms &amp; Conditions</a></li>
+          <li><a href="{{ pages.faqs.url | default: '/pages/contact' }}">FAQs</a></li>
+          <li><a href="{{ shop.shipping_policy.url | default: '/pages/contact' }}">Shipping &amp; Delivery</a></li>
+          <li><a href="{{ shop.refund_policy.url | default: '/pages/contact' }}">Returns &amp; Exchanges</a></li>
+          <li><a href="{{ pages['care-instructions'].url | default: '/pages/contact' }}">Care Instructions</a></li>
+          <li><a href="{{ shop.privacy_policy.url | default: '/pages/contact' }}">Privacy Policy</a></li>
+          <li><a href="{{ shop.terms_of_service.url | default: '/pages/contact' }}">Terms &amp; Conditions</a></li>
         {%- endif -%}
       </ul>
     </nav>

@@ -15,6 +15,7 @@
         "button1_label": "Shop Collection",
         "button1_link": "shopify://collections/all",
         "button2_label": "Explore Custom",
+        "button2_link": "shopify://pages/customization",
         "autoplay": 5
       }
     },
@@ -43,11 +44,11 @@
     "collections": {
       "type": "home-collections",
       "blocks": {
-        "c1": { "type": "collection_card", "settings": { "title": "Decor Trays", "description": "Elevate your surfaces with elegance.", "image_asset": "onterior-product-2.png" } },
-        "c2": { "type": "collection_card", "settings": { "title": "Leather Accessories", "description": "Functional luxury for everyday use.", "image_asset": "onterior-product-3.png" } },
-        "c3": { "type": "collection_card", "settings": { "title": "Desk & Office", "description": "Organized. Refined. Effortless.", "image_asset": "onterior-product-4.png" } },
-        "c4": { "type": "collection_card", "settings": { "title": "Tissue Box Covers", "description": "Subtle details, lasting impressions.", "image_asset": "onterior-product-5.png" } },
-        "c5": { "type": "collection_card", "settings": { "title": "Coasters", "description": "Protection that looks premium.", "image_asset": "onterior-product-1.png" } }
+        "c1": { "type": "collection_card", "settings": { "title": "Decor Trays", "description": "Elevate your surfaces with elegance.", "image_asset": "onterior-product-2.png", "link": "shopify://collections/all" } },
+        "c2": { "type": "collection_card", "settings": { "title": "Leather Accessories", "description": "Functional luxury for everyday use.", "image_asset": "onterior-product-3.png", "link": "shopify://collections/all" } },
+        "c3": { "type": "collection_card", "settings": { "title": "Desk & Office", "description": "Organized. Refined. Effortless.", "image_asset": "onterior-product-4.png", "link": "shopify://collections/all" } },
+        "c4": { "type": "collection_card", "settings": { "title": "Tissue Box Covers", "description": "Subtle details, lasting impressions.", "image_asset": "onterior-product-5.png", "link": "shopify://collections/all" } },
+        "c5": { "type": "collection_card", "settings": { "title": "Coasters", "description": "Protection that looks premium.", "image_asset": "onterior-product-1.png", "link": "shopify://collections/all" } }
       },
       "block_order": ["c1", "c2", "c3", "c4", "c5"],
       "settings": {
