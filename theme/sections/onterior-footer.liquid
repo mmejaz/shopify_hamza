@@ -35,6 +35,12 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C24 5.39 18.635.026 12.017.026z"/></svg>
           </a>
         {%- endif -%}
+        {%- if section.settings.whatsapp_number != blank -%}
+          {%- assign whatsapp_digits = section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+          <a href="https://wa.me/{{ whatsapp_digits }}" aria-label="WhatsApp" class="ont-foot__social" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.4-8.4ZM12.1 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.5 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.5-4.5 9.9-9.9 9.9Zm5.4-7.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/></svg>
+          </a>
+        {%- endif -%}
       </div>
     </div>
 
@@ -68,12 +74,12 @@
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {%- endfor -%}
         {%- else -%}
-          <li><a href="{{ pages.faqs.url | default: '/pages/contact' }}">FAQs</a></li>
-          <li><a href="{{ shop.shipping_policy.url | default: '/pages/contact' }}">Shipping &amp; Delivery</a></li>
-          <li><a href="{{ shop.refund_policy.url | default: '/pages/contact' }}">Returns &amp; Exchanges</a></li>
-          <li><a href="{{ pages['care-instructions'].url | default: '/pages/contact' }}">Care Instructions</a></li>
-          <li><a href="{{ shop.privacy_policy.url | default: '/pages/contact' }}">Privacy Policy</a></li>
-          <li><a href="{{ shop.terms_of_service.url | default: '/pages/contact' }}">Terms &amp; Conditions</a></li>
+          <li><a href="{{ pages.faqs.url | default: '/pages/faqs' }}">FAQs</a></li>
+          <li><a href="{{ pages['shipping-delivery'].url | default: '/pages/shipping-delivery' }}">Shipping &amp; Delivery</a></li>
+          <li><a href="{{ pages['returns-exchanges'].url | default: '/pages/returns-exchanges' }}">Returns &amp; Exchanges</a></li>
+          <li><a href="{{ pages['care-instructions'].url | default: '/pages/care-instructions' }}">Care Instructions</a></li>
+          <li><a href="{{ pages['privacy-policy'].url | default: shop.privacy_policy.url | default: '/pages/privacy-policy' }}">Privacy Policy</a></li>
+          <li><a href="{{ pages['terms-conditions'].url | default: shop.terms_of_service.url | default: '/pages/terms-conditions' }}">Terms &amp; Conditions</a></li>
         {%- endif -%}
       </ul>
     </nav>
@@ -83,6 +89,10 @@
       <p class="ont-foot__h">{{ section.settings.contact_heading | default: 'Contact' }}</p>
       <ul class="ont-foot__list">
         {%- if section.settings.phone != blank -%}<li><a href="tel:{{ section.settings.phone | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}">{{ section.settings.phone }}</a></li>{%- endif -%}
+        {%- if section.settings.whatsapp_number != blank -%}
+          {%- assign whatsapp_digits = section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+          <li><a href="https://wa.me/{{ whatsapp_digits }}" target="_blank" rel="noopener">WhatsApp: {{ section.settings.whatsapp_label | default: section.settings.whatsapp_number }}</a></li>
+        {%- endif -%}
         {%- if section.settings.email != blank -%}<li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>{%- endif -%}
         {%- if section.settings.address != blank -%}<li>{{ section.settings.address }}</li>{%- endif -%}
       </ul>
@@ -99,8 +109,8 @@
         <button type="submit" class="ont-foot__submit" aria-label="Subscribe">
           <svg width="18" height="12" viewBox="0 0 22 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 6h19M15 1l5 5-5 5"/></svg>
         </button>
+        {%- if form.posted_successfully? -%}<p class="ont-foot__msg">Thank you for subscribing!</p>{%- endif -%}
       {%- endform -%}
-      {%- if form.posted_successfully? -%}<p class="ont-foot__msg">Thank you for subscribing!</p>{%- endif -%}
     </div>
 
   </div>
@@ -119,6 +129,12 @@
       {%- endif -%}
     </div>
   </div>
+  {%- if section.settings.show_whatsapp_float and section.settings.whatsapp_number != blank -%}
+    {%- assign whatsapp_digits = section.settings.whatsapp_number | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' -%}
+    <a class="ont-whatsapp-float" href="https://wa.me/{{ whatsapp_digits }}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L0 24l6.5-1.7c1.7.9 3.6 1.4 5.6 1.4 6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.2-6.1-3.4-8.4ZM12.1 21.7c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4c-1-1.6-1.5-3.4-1.5-5.2 0-5.5 4.5-9.9 9.9-9.9 2.6 0 5.1 1 7 2.9a9.8 9.8 0 0 1 2.9 7c0 5.5-4.5 9.9-9.9 9.9Zm5.4-7.4c-.3-.1-1.8-.9-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4Z"/></svg>
+    </a>
+  {%- endif -%}
 </footer>
 
 {% stylesheet %}
@@ -154,6 +170,7 @@
   .ont-foot__submit { background: var(--ont-bronze); color: var(--ont-ink); border: 0; padding: 0 20px; display: grid; place-items: center; cursor: pointer; transition: background-color .3s; }
   .ont-foot__submit:hover { background: var(--ont-sand); }
   .ont-foot__msg { margin: 12px 0 0; font-size: 12px; color: var(--ont-sand); }
+  .ont-foot__form .ont-foot__msg { flex: 1 0 100%; }
 
   .ont-foot__bar { border-top: 1px solid rgba(255,255,255,.1); }
   .ont-foot__barinner { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 22px 0; text-align: center; }
@@ -162,6 +179,13 @@
   .ont-foot__credit { margin: 0; font-size: 12px; font-weight: 300; color: rgba(167,158,144,.8); }
   .ont-foot__credit a { color: rgba(167,158,144,.8); text-decoration: none; transition: color .3s; }
   .ont-foot__credit a:hover { color: var(--ont-sand); }
+  .ont-whatsapp-float {
+    position: fixed; right: 18px; bottom: 18px; z-index: 60; display: grid; place-items: center;
+    width: 50px; height: 50px; border-radius: 999px; background: #25d366; color: #fff;
+    box-shadow: 0 14px 32px -14px rgba(0,0,0,.55); transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .ont-whatsapp-float:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -14px rgba(0,0,0,.65); }
+  .ont-whatsapp-float svg { width: 27px; height: 27px; display: block; }
 {% endstylesheet %}
 
 {% schema %}
@@ -176,6 +200,9 @@
     { "type": "url", "id": "instagram", "label": "Instagram URL" },
     { "type": "url", "id": "facebook", "label": "Facebook URL" },
     { "type": "url", "id": "pinterest", "label": "Pinterest URL" },
+    { "type": "text", "id": "whatsapp_number", "label": "WhatsApp number", "info": "Use country code for wa.me links, e.g. 923099555818.", "default": "923099555818" },
+    { "type": "text", "id": "whatsapp_label", "label": "WhatsApp display number", "default": "03099555818" },
+    { "type": "checkbox", "id": "show_whatsapp_float", "label": "Show floating WhatsApp button", "default": true },
     { "type": "header", "content": "Quick links" },
     { "type": "text", "id": "links_heading", "label": "Heading", "default": "Quick Links" },
     { "type": "link_list", "id": "links_menu", "label": "Menu", "default": "main-menu" },

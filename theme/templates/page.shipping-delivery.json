@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "processing": {
+          "type": "content",
+          "settings": {
+            "heading": "Order Processing",
+            "body": "<ul><li>Orders are processed within 5-8 business days.</li><li>Orders placed on weekends or public holidays will be processed on the next business day.</li></ul>"
+          }
+        },
+        "shipping-times": {
+          "type": "content",
+          "settings": {
+            "heading": "Shipping Times",
+            "body": "<p>Delivery times vary depending on your location and the shipping method selected during checkout.</p>"
+          }
+        },
+        "tracking": {
+          "type": "content",
+          "settings": {
+            "heading": "Order Tracking",
+            "body": "<p>Once your order has been shipped, you will receive a confirmation email with tracking information.</p>"
+          }
+        },
+        "international": {
+          "type": "content",
+          "settings": {
+            "heading": "International Shipping",
+            "body": "<p>International shipping is available for selected destinations. Shipping charges and delivery times vary by country.</p><p>Please note that customs duties, taxes, and import fees are the responsibility of the customer where applicable.</p>"
+          }
+        }
+      },
+      "block_order": ["processing", "shipping-times", "tracking", "international"],
+      "settings": {
+        "eyebrow": "Shipping & Delivery",
+        "heading": "Shipping Information",
+        "intro": "<p>We strive to process and dispatch all orders as quickly as possible.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

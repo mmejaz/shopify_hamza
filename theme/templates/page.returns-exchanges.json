@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "eligibility": {
+          "type": "content",
+          "settings": {
+            "heading": "To Qualify for a Return",
+            "body": "<ul><li>Items must be unused and in original condition.</li><li>Original packaging must be included.</li><li>Proof of purchase is required.</li></ul><p>Refunds are processed after returned items have been inspected.</p><p>Shipping charges are generally non-refundable unless the item received is defective or incorrect.</p>"
+          }
+        }
+      },
+      "block_order": ["eligibility"],
+      "settings": {
+        "eyebrow": "Returns & Exchanges",
+        "heading": "Returns Policy",
+        "intro": "<p>Your satisfaction is important to us.</p><p>If you're not completely happy with your purchase, you may request a return or exchange within the eligible return period.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

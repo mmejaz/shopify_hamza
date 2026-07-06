@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "common-topics": {
+          "type": "content",
+          "settings": {
+            "heading": "Common Topics",
+            "body": "<ul><li>How do I place an order?</li><li>Can I modify or cancel my order?</li><li>How long does shipping take?</li><li>Do you ship internationally?</li><li>How can I track my order?</li><li>What is your return policy?</li><li>How do I contact customer support?</li></ul>"
+          }
+        }
+      },
+      "block_order": ["common-topics"],
+      "settings": {
+        "eyebrow": "FAQs",
+        "heading": "Frequently Asked Questions",
+        "intro": "<p>Find answers to the questions we receive most often about our products, orders, shipping, returns, and care instructions. If you can't find what you're looking for, our customer support team is always happy to help.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

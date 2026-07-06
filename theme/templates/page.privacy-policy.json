@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "collect": {
+          "type": "content",
+          "settings": {
+            "heading": "Information We May Collect",
+            "body": "<ul><li>Contact information</li><li>Billing and shipping details</li><li>Order history</li><li>Website usage information</li></ul>"
+          }
+        },
+        "use": {
+          "type": "content",
+          "settings": {
+            "heading": "How We Use This Information",
+            "body": "<ul><li>Process your orders</li><li>Improve our services</li><li>Provide customer support</li><li>Communicate important updates</li></ul><p>We do not sell your personal information to third parties.</p>"
+          }
+        }
+      },
+      "block_order": ["collect", "use"],
+      "settings": {
+        "eyebrow": "Privacy Policy",
+        "heading": "Your Privacy Matters",
+        "intro": "<p>We respect your privacy and are committed to protecting your personal information.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

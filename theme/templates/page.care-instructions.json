@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "recommendations": {
+          "type": "content",
+          "settings": {
+            "heading": "We Recommend",
+            "body": "<ul><li>Clean with a soft, dry cloth.</li><li>Avoid prolonged exposure to direct sunlight.</li><li>Keep away from excessive moisture.</li><li>Do not use abrasive cleaners or harsh chemicals.</li><li>Store products in a cool, dry environment when not in use.</li></ul><p>Always follow any specific care instructions provided with your product.</p>"
+          }
+        }
+      },
+      "block_order": ["recommendations"],
+      "settings": {
+        "eyebrow": "Care Instructions",
+        "heading": "Product Care",
+        "intro": "<p>Proper care helps preserve the quality and appearance of your purchase.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

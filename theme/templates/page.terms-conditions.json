@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "main": {
+      "type": "onterior-info-page",
+      "blocks": {
+        "terms": {
+          "type": "content",
+          "settings": {
+            "heading": "These Terms Govern",
+            "body": "<ul><li>Website usage</li><li>Product availability</li><li>Pricing</li><li>Order acceptance</li><li>Payments</li><li>Shipping</li><li>Returns</li><li>Intellectual property</li><li>Limitation of liability</li></ul><p>We reserve the right to update these terms at any time without prior notice.</p>"
+          }
+        }
+      },
+      "block_order": ["terms"],
+      "settings": {
+        "eyebrow": "Terms & Conditions",
+        "heading": "Terms of Use",
+        "intro": "<p>By accessing or purchasing from our website, you agree to these Terms and Conditions.</p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

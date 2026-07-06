@@ -1,0 +1,71 @@
+{{ 'onterior-base.css' | asset_url | stylesheet_tag }}
+
+<section class="ont onterior-info-page" style="background: var(--ont-cream);">
+  <div class="ont-container">
+    <header class="ont-info__head">
+      {%- if section.settings.eyebrow != blank -%}<p class="ont-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.heading != blank -%}<h1 class="ont-serif ont-info__title">{{ section.settings.heading }}</h1>{%- endif -%}
+      {%- if section.settings.intro != blank -%}<div class="ont-info__intro rte">{{ section.settings.intro }}</div>{%- endif -%}
+    </header>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ont-info__content">
+        {%- for block in section.blocks -%}
+          <article class="ont-info__block" {{ block.shopify_attributes }}>
+            {%- if block.settings.heading != blank -%}<h2 class="ont-serif ont-info__block-title">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.body != blank -%}<div class="ont-info__body rte">{{ block.settings.body }}</div>{%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .onterior-info-page { padding-top: 56px; padding-bottom: 72px; }
+  @media (min-width: 1024px) { .onterior-info-page { padding-top: 88px; padding-bottom: 104px; } }
+  .ont-info__head { max-width: 760px; margin: 0 auto 44px; text-align: center; }
+  .ont-info__title { margin: 0; color: var(--ont-ink); font-size: 36px; line-height: 1.15; font-weight: 600; }
+  @media (min-width: 750px) { .ont-info__title { font-size: 48px; } }
+  .ont-info__intro { margin-top: 22px; color: var(--ont-stone); font-size: 15px; line-height: 1.9; }
+  .ont-info__intro p { margin: 0 0 1em; }
+  .ont-info__content { max-width: 860px; margin-inline: auto; display: grid; gap: 28px; }
+  .ont-info__block { padding-top: 28px; border-top: 1px solid rgba(22,19,17,.12); }
+  .ont-info__block:first-child { padding-top: 0; border-top: 0; }
+  .ont-info__block-title { margin: 0 0 16px; color: var(--ont-ink); font-size: 24px; line-height: 1.25; font-weight: 600; }
+  .ont-info__body { color: var(--ont-stone); font-size: 15px; line-height: 1.9; }
+  .ont-info__body p { margin: 0 0 1em; }
+  .ont-info__body ul { margin: 0 0 1em 1.2em; padding: 0; }
+  .ont-info__body li { margin-bottom: 8px; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Onterior info page",
+  "tag": "section",
+  "class": "section-onterior-info-page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Customer Care" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Frequently Asked Questions" },
+    { "type": "richtext", "id": "intro", "label": "Intro text" }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content block",
+      "settings": [
+        { "type": "inline_richtext", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Onterior info page",
+      "blocks": [
+        { "type": "content" }
+      ]
+    }
+  ]
+}
+{% endschema %}

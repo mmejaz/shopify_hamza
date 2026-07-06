@@ -14,9 +14,12 @@
     "footer": {
       "type": "onterior-footer",
       "settings": {
-        "instagram": "https://instagram.com",
-        "facebook": "https://facebook.com",
-        "pinterest": "https://pinterest.com"
+        "instagram": "https://www.instagram.com/onteriorenterprises/",
+        "facebook": "https://www.facebook.com/people/Onterior-Enterprises",
+        "pinterest": "",
+        "whatsapp_number": "923099555818",
+        "whatsapp_label": "03099555818",
+        "show_whatsapp_float": true
       }
     }
   },

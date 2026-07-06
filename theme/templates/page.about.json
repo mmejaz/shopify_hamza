@@ -3,10 +3,10 @@
     "hero": {
       "type": "about-hero",
       "settings": {
-        "eyebrow": "About Onterior Enterprises",
-        "heading": "Crafted With Purpose.",
-        "heading_line2": "Designed <em>For Life.</em>",
-        "body": "<p>At Onterior Enterprises, we create luxury leather trays and home accents that blend timeless elegance, functionality, and uncompromising quality. Every piece we make is a reflection of our passion for craftsmanship and our commitment to elevating the spaces you love.</p>",
+        "eyebrow": "About Us",
+        "heading": "The Art of",
+        "heading_line2": "<em>Timeless Living.</em>",
+        "body": "<p>At Onterior Enterprises, we believe luxury begins with the details. Every piece we create is designed to transform everyday spaces into refined experiences, where beauty and functionality exist in perfect harmony.</p><p>Our premium leather trays are more than decorative accessories—they are timeless essentials crafted to organize, elevate, and complement modern living. From coffee tables and vanities to offices and dining spaces, each design brings effortless sophistication to your home.</p>",
         "button_label": "Explore Our Collections",
         "button_link": "shopify://collections/all",
         "image_asset": "onterior-about-top.jpg",
@@ -16,65 +16,142 @@
     "story": {
       "type": "about-story",
       "blocks": {
-        "f1": { "type": "feature", "settings": { "icon": "medal", "heading": "Timeless Design", "text": "Elegant pieces that never go out of style." } },
-        "f2": { "type": "feature", "settings": { "icon": "gem", "heading": "Premium Quality", "text": "Carefully selected materials for lasting beauty." } },
-        "f3": { "type": "feature", "settings": { "icon": "box", "heading": "Functional Luxury", "text": "Designed to be as practical as they are beautiful." } },
-        "f4": { "type": "feature", "settings": { "icon": "heart", "heading": "Customer Focus", "text": "Your satisfaction inspires everything we do." } }
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "gem",
+            "heading": "Premium Materials",
+            "text": "We source high-quality leather and carefully selected materials that offer exceptional durability, rich texture, and a luxurious finish."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "medal",
+            "heading": "Timeless Design",
+            "text": "Every collection is designed with clean lines and enduring elegance, allowing our pieces to complement interiors for years to come."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "heading": "Thoughtful Craftsmanship",
+            "text": "Every stitch, edge, and finish is carefully inspected to ensure superior quality and refined detail."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "box",
+            "heading": "Functional Luxury",
+            "text": "Beautiful products should also serve a purpose. Our trays are created to organize everyday essentials while elevating your home's aesthetic."
+          }
+        }
       },
       "block_order": ["f1", "f2", "f3", "f4"],
       "settings": {
         "eyebrow": "Our Story",
-        "heading": "Where Craftsmanship Meets <em>Timeless Living.</em>",
-        "body": "<p>Onterior Enterprises began with a simple belief — that the smallest details can transform everyday living into something extraordinary. What started as a passion for fine craftsmanship has grown into a brand trusted by homes, professionals, and design lovers worldwide.</p><p>We combine the finest materials with skilled artistry to create pieces that are not just beautiful, but made to last for generations.</p>",
+        "heading": "Inspired by Elegance. <em>Driven by Craftsmanship.</em>",
+        "body": "<p>Onterior Enterprises was founded with a simple vision: to create home decor that never goes out of style.</p><p>Inspired by contemporary interiors and handcrafted excellence, we design leather accessories that blend clean aesthetics with practical functionality. Every tray is thoughtfully made using premium materials, refined finishes, and meticulous attention to detail, ensuring each piece feels as luxurious as it looks.</p><p>We believe exceptional design should become part of everyday living, adding warmth, organization, and timeless character to every space.</p>",
         "image_asset": "onterior-our-story.jpg",
         "image_alt": "Round leather tray styled with a candle, books and diffuser"
       }
     },
-    "stats": {
-      "type": "about-stats",
-      "blocks": {
-        "s1": { "type": "stat", "settings": { "icon": "medal", "value": 10, "suffix": "+", "label": "Years of Craftsmanship" } },
-        "s2": { "type": "stat", "settings": { "icon": "gem", "value": 500, "suffix": "+", "label": "Unique Products" } },
-        "s3": { "type": "stat", "settings": { "icon": "smile", "value": 1000, "suffix": "+", "label": "Happy Customers" } },
-        "s4": { "type": "stat", "settings": { "icon": "globe", "value_text": "WORLDWIDE", "label": "Shipping to 20+ Countries" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4"],
-      "settings": {}
-    },
     "process": {
       "type": "about-process",
       "blocks": {
-        "p1": { "type": "step", "settings": { "number": "01", "title": "Finest Materials", "text": "We source the best leather and metals from trusted suppliers.", "image_asset": "onterior-process-4.jpg" } },
-        "p2": { "type": "step", "settings": { "number": "02", "title": "Skilled Craftsmanship", "text": "Our artisans handcraft every detail with precision and care.", "image_asset": "onterior-process-3.jpg" } },
-        "p3": { "type": "step", "settings": { "number": "03", "title": "Quality Check", "text": "Every piece is inspected to ensure perfection.", "image_asset": "onterior-process-2.jpg" } },
-        "p4": { "type": "step", "settings": { "number": "04", "title": "Perfectly Packed", "text": "Carefully packaged to reach you in perfect condition.", "image_asset": "onterior-process-1.jpg" } }
+        "p1": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Thoughtful Design",
+            "text": "Every Onterior tray begins with a clear design purpose for modern living.",
+            "image_asset": "onterior-process-4.jpg"
+          }
+        },
+        "p2": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Premium Materials",
+            "text": "We select leather and materials for rich texture, durability, and refined finish.",
+            "image_asset": "onterior-process-3.jpg"
+          }
+        },
+        "p3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Precision Craft",
+            "text": "From cutting and stitching to finishing, each step is completed with care.",
+            "image_asset": "onterior-process-2.jpg"
+          }
+        },
+        "p4": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Quality Inspection",
+            "text": "Every piece is inspected for lasting durability, beauty, and refined detail.",
+            "image_asset": "onterior-process-1.jpg"
+          }
+        }
       },
       "block_order": ["p1", "p2", "p3", "p4"],
       "settings": {
-        "eyebrow": "Crafted to Perfection",
-        "heading": "Thoughtful Process. Exceptional Results.",
-        "body": "<p>Every Onterior piece goes through a meticulous process to ensure it meets our highest standards of quality and design.</p>"
+        "eyebrow": "Our Process",
+        "heading": "Crafted with Precision. Designed to Last.",
+        "body": "<p>Every Onterior tray begins with thoughtful design and premium materials. From cutting and stitching to finishing and quality inspection, each step is completed with precision and care.</p><p>Our commitment to craftsmanship ensures every product delivers not only exceptional beauty but lasting durability—creating pieces you'll enjoy for years to come.</p>"
       }
+    },
+    "perks": {
+      "type": "about-perks",
+      "blocks": {
+        "k1": {
+          "type": "perk",
+          "settings": {
+            "icon": "medal",
+            "title": "Timeless Elegance",
+            "text": "Luxury designs that complement every interior style."
+          }
+        },
+        "k2": {
+          "type": "perk",
+          "settings": {
+            "icon": "gem",
+            "title": "Premium Leather",
+            "text": "Carefully selected materials with exceptional texture and durability."
+          }
+        },
+        "k3": {
+          "type": "perk",
+          "settings": {
+            "icon": "shield",
+            "title": "Exceptional Craftsmanship",
+            "text": "Hand-finished details that reflect quality in every piece."
+          }
+        },
+        "k4": {
+          "type": "perk",
+          "settings": {
+            "icon": "heart",
+            "title": "Made for Everyday Living",
+            "text": "Beautiful organization for coffee tables, bedrooms, offices, kitchens, and more."
+          }
+        }
+      },
+      "block_order": ["k1", "k2", "k3", "k4"],
+      "settings": {}
     },
     "quote": {
       "type": "about-quote",
       "settings": {
         "image_asset": "onterior-quote.jpg",
         "image_alt": "Candle and leather tray in a softly lit interior",
-        "quote": "<p>We don't just create products, we create experiences that become a part of your life.</p>",
-        "attribution": "Onterior Enterprises"
+        "quote": "<p>Luxury isn't about excess—it's about thoughtful design, enduring quality, and the details that make a house feel like home.</p><p>At Onterior Enterprises, we're committed to creating pieces that become part of your everyday life while bringing timeless elegance to every room.</p>",
+        "attribution": "Crafted with Purpose. Designed for Life."
       }
-    },
-    "perks": {
-      "type": "about-perks",
-      "blocks": {
-        "k1": { "type": "perk", "settings": { "icon": "shield", "title": "Secure Payment", "text": "Safe and encrypted checkout." } },
-        "k2": { "type": "perk", "settings": { "icon": "package", "title": "Premium Packaging", "text": "Beautifully packaged for a perfect unboxing." } },
-        "k3": { "type": "perk", "settings": { "icon": "headset", "title": "Dedicated Support", "text": "We're here to assist you every step of the way." } },
-        "k4": { "type": "perk", "settings": { "icon": "truck", "title": "Worldwide Shipping", "text": "Secure and reliable delivery worldwide." } }
-      },
-      "block_order": ["k1", "k2", "k3", "k4"],
-      "settings": {}
     },
     "closing": {
       "type": "onterior-image-banner",
@@ -85,5 +162,5 @@
       }
     }
   },
-  "order": ["hero", "story", "stats", "process", "quote", "perks", "closing"]
+  "order": ["hero", "story", "process", "perks", "quote", "closing"]
 }
